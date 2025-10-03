@@ -10,8 +10,8 @@ import Logo from '@/components/Logo.astro';
 <Layout>
 	<div class="px-3 mx-auto min-h-full flex flex-col-reverse justify-between">
 		<!-- <canvas id="background" class="fixed -z-1 inset-0"></canvas> -->
-		<header class="p-5 pt-4 flex justify-between items-center">
-			<div class="text-2xl text-accent">
+		<header class="p-6 pt-4 flex justify-between items-end">
+			<div class="text-3xl text-accent">
 				<Logo />
 			</div>
 			<a href="#" class="font-bold lowercase border border-gray-200 hover:bg-accent hover:border-accent hover:text-gray-50 px-5 py-1 rounded-full">
@@ -19,26 +19,26 @@ import Logo from '@/components/Logo.astro';
 			</a>
 		</header>
 		<section class="flex-1 flex flex-col">
-			<footer class="px-4 py-4 flex items-center gap-3">
-				<h1 class="text-xl font-bold tracking-tight">Sedimental</h1>
-				<p class="">(Gonzalo Tello, 2025)</p>
-			</footer>
+			<header class="px-6 py-6 flex items-center gap-3">
+				<h1 class="text-2xl font-bold tracking-tight">Título Obra</h1>
+				<p class="text-lg">(Nombre Artista, 2025)</p>
+			</header>
 			<div class="flex-1 bg-black rounded-sm overflow-clip relative">
-				<img src="/poster-alt.jpg" class="absolute inset-0 w-full h-full object-cover" />
-				<!-- <video src="/video.mp4" autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video> -->
+				<img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" />
+				<!-- <video src="/video/video.mp4" autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video> -->
 			</div>
 		</section>
 	</div>
 	<div class="h-1/2 p-3">
-		<div class="p-4 flex flex-col gap-30 pb-20">
+		<div class="p-6 flex flex-col gap-30 pb-20">
 			<article>
 				<h2 class="font-bold tracking-tight text-xl my-8">Artworks</h2>
 				<ul class="columns-3 gap-20">
 					<li class="py-3 border-b border-gray-200">
 						<a href="#" class="flex items-center gap-3">
 							<div class="flex gap-2">
-								<p class="font-semibold">Sedimental</p>
-								<p class="text-sm text-gray-500">(Gonzalo Tello, 2025)</p>
+								<p class="font-semibold">Título Obra</p>
+								<p class="text-sm text-gray-500">(Nombre Artista, 2025)</p>
 							</div>
 						</a>
 					</li>
