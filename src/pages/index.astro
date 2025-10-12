@@ -1,131 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import labiaLogo from '../assets/labias.svg';
-import Logo from '@/components/Logo.astro';
+import { artworks } from '@/constants/artworks';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const artworkSlugs = artworks.map((art) => art.slug);
 ---
 
 <Layout>
-	<div class="px-3 mx-auto min-h-full flex flex-col-reverse justify-between">
-		<!-- <canvas id="background" class="fixed -z-1 inset-0"></canvas> -->
-		<header class="p-6 pt-4 flex justify-between items-end">
-			<div class="text-3xl text-accent">
-				<Logo />
-			</div>
-			<a href="#" class="font-bold lowercase border border-gray-200 hover:bg-accent hover:border-accent hover:text-gray-50 px-5 py-1 rounded-full">
-				Visit next 
-			</a>
-		</header>
-		<section class="flex-1 flex flex-col">
-			<header class="px-6 py-6 flex items-center gap-3">
-				<h1 class="text-2xl font-bold tracking-tight">Título Obra</h1>
-				<p class="text-lg">(Nombre Artista, 2025)</p>
-			</header>
-			<div class="flex-1 bg-black rounded-sm overflow-clip relative">
-				<img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" />
-				<!-- <video src="/video/video.mp4" autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video> -->
-			</div>
-		</section>
-	</div>
-	<div class="h-1/2 p-3">
-		<div class="p-6 flex flex-col gap-30 pb-20">
-			<article>
-				<h2 class="font-bold tracking-tight text-xl my-8">Artworks</h2>
-				<ul class="columns-3 gap-20">
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Título Obra</p>
-								<p class="text-sm text-gray-500">(Nombre Artista, 2025)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Nocturne Echoes</p>
-								<p class="text-sm text-gray-500">(María Duarte, 2024)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Analog Dreams</p>
-								<p class="text-sm text-gray-500">(Luca Ferri, 2023)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Static Reverie</p>
-								<p class="text-sm text-gray-500">(Yara Kim, 2022)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Tape Memory</p>
-								<p class="text-sm text-gray-500">(Omar R., 2021)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Chromatic Haze</p>
-								<p class="text-sm text-gray-500">(Anika Bose, 2025)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Reel Static</p>
-								<p class="text-sm text-gray-500">(S. Nakamoto, 2020)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Ghost Frame</p>
-								<p class="text-sm text-gray-500">(Helena Cruz, 2024)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Fuzzy Residue</p>
-								<p class="text-sm text-gray-500">(Marco Silva, 2019)</p>
-							</div>
-						</a>
-					</li>
-					<li class="py-3 border-b border-gray-200">
-						<a href="#" class="flex items-center gap-3">
-							<div class="flex gap-2">
-								<p class="font-semibold">Linear Drift</p>
-								<p class="text-sm text-gray-500">(I. Petrov, 2022)</p>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</article>
-			<article class="flex flex-col items-end text-end">
-				<h2 class="font-bold tracking-tight text-xl my-8">About / Credits</h2>
-				<div class="max-w-3xl text-sm flex flex-col gap-5 leading-6">
-					<p><i class="text-accent font-bold not-italic">Labias</i> is a pavilion of <b class="font-semibold">The Wrong Biennale</b>, curated by <b class="font-semibold">Ignacio Guerra</b> in collaboration with <b class="font-semibold">José Casanova</b>.</p>
-					<p>The project was developed by the study group <b class="font-semibold">Programación Web Creativa y Arte Digital (UNTREF)</b>, with the support of the <b class="font-semibold">Laboratorio de Arte Electrónico e Inteligencia Artificial (UNTREF)</b> and the <b class="font-semibold">Diplomatura en Inteligencia Artificial aplicada al Arte Multimedial (UNA)</b>.</p>
-					<p>Special thanks to all the artists whose work made this pavilion possible.</p>
-					<p>Made width ❤️ from 🇦🇷</p>
-				</div>
-			</article>
-		</div>
-	</div>
- <!-- <script src="/scripts/background.js" is:inline></script> -->
+	<script define:vars={{ artworkSlugs }}>
+		window._artworkSlugs = artworkSlugs;
+	</script>
+	<script>
+		import { getTour, saveTour } from "@/utils/tour-manager";
+		import { generateArtworkUrl } from "@/utils/url-generator";
+		
+		const artworkSlugs = window._artworkSlugs;
+
+		const tour = getTour(artworkSlugs);
+		saveTour(tour);
+
+		const nextArtworkSlug = tour.getNextArtworkSlug();
+		if (nextArtworkSlug) {
+			window.location.href = generateArtworkUrl(nextArtworkSlug);
+		} else {
+			console.error('No next artwork found');
+		}
+	</script>
 </Layout>
