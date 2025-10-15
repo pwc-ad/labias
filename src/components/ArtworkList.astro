@@ -9,7 +9,7 @@ interface Props {
 const { artworks } = Astro.props;
 ---
 
-<ul class="columns-3 gap-20">
+<ul class="md:columns-2 md:gap-15 xl:columns-3 xl:gap-20">
 	{ artworks.map(artwork => (
 		<ArtworkListItem artwork={artwork} />
 	))}
