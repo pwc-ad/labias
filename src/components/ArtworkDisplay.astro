@@ -1,0 +1,20 @@
+---
+import { type Artwork } from '@/constants/artworks';
+import ArtworkDisplayHeader from "./ArtworkDisplayHeader.astro";
+
+interface Props {
+	artwork: Artwork;
+	className?: string;
+}
+
+const { artwork, className } = Astro.props;
+---
+
+<section class={`flex flex-col ${className}`}>
+	<ArtworkDisplayHeader artwork={artwork} />
+	<div class="flex-1 bg-black rounded-sm overflow-clip relative">
+		<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
+		{artwork.metadata.type === 'interactive' && <iframe src={artwork.metadata.url} class="absolute w-full h-full"></iframe>}
+		{artwork.metadata.type === 'video' && <video controls src={artwork.metadata.videoUrl} autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video>}
+	</div>
+</section>

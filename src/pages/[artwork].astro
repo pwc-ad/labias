@@ -5,6 +5,8 @@ import labiaLogo from '../assets/labias.svg';
 import Logo from '@/components/Logo.astro';
 import ArtworkList from '@/components/ArtworkList.astro';
 import { artworks } from '@/constants/artworks';
+import Header from "@/components/Header.astro";
+import ArtworkDisplay from "@/components/ArtworkDisplay.astro";
 
 export const getStaticPaths = (() => {
 	return artworks.map((artwork) => ({
@@ -13,7 +15,7 @@ export const getStaticPaths = (() => {
 });
 
 const { artwork: artworkSlug } = Astro.params;
-const artwork = artworks.find((art) => art.slug === artworkSlug);
+const artwork = artworks.find((art) => art.slug === artworkSlug)!;
 const { title, author } = artwork || {};
 const artworkSlugs = artworks.map((art) => art.slug);
 const currentArtworkSlug = artwork?.slug;
@@ -21,26 +23,8 @@ const currentArtworkSlug = artwork?.slug;
 
 <Layout>
 	<div class="px-3 mx-auto min-h-full flex flex-col-reverse justify-between">
-		<!-- <canvas id="background" class="fixed -z-1 inset-0"></canvas> -->
-		<header class="p-6 pt-4 flex justify-between items-end">
-			<div class="text-3xl text-accent">
-				<Logo />
-			</div>
-			<button id="next-artwork" class="font-bold cursor-pointer lowercase border border-gray-200 hover:bg-accent hover:border-accent hover:text-gray-50 px-5 py-1 rounded-full">
-				Visit next 
-			</button>
-		</header>
-		<section class="flex-1 flex flex-col">
-			<header class="px-6 py-6 flex items-center gap-3">
-				<h1 class="text-2xl font-bold tracking-tight">{title}</h1>
-				<p class="text-lg">({author}, 2025)</p>
-			</header>
-			<div class="flex-1 bg-black rounded-sm overflow-clip relative">
-				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
-				 <!-- <iframe src="https://radicalsoftware.xyz/labs/en/vertex-sphere/" class="absolute w-full h-full"></iframe> -->
-				<!-- <video controls src="/video/video.mp4" autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video> -->
-			</div>
-		</section>
+		<Header buttonNextId="next-artwork" />
+		<ArtworkDisplay artwork={artwork} className="flex-1" />
 	</div>
 	<div class="h-1/2 p-3">
 		<div class="p-6 flex flex-col gap-30 pb-20">

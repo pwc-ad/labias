@@ -1,0 +1,18 @@
+---
+import Logo from '@/components/Logo.astro';
+
+interface Props {
+	buttonNextId?: string;
+}
+
+const { buttonNextId = 'next-artwork' } = Astro.props;
+---
+
+<header class="p-6 pt-4 flex justify-between items-end">
+	<div class="text-3xl text-accent">
+		<Logo />
+	</div>
+	<button id={buttonNextId} class="font-bold cursor-pointer lowercase border border-gray-200 hover:bg-accent hover:border-accent hover:text-gray-50 px-5 py-1 rounded-full">
+		Visit next 
+	</button>
+</header>
