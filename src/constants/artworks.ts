@@ -101,7 +101,21 @@ export const artworks: Artworks = [
 			type: "video",
 			videoUrl: "/video/video.mp4",
 		}
-	}
+	},
+	{
+		slug: "glitch-odyssey",
+		title: "Glitch Odyssey",
+		author: "Elena Petrova",
+		year: 2023,
+		metadata: {
+			type: "image",
+			images: [
+				{ url: "/historia.jpg", alt: "Glitch Odyssey Image 1" },
+				{ url: "/poster.jpg", alt: "Glitch Odyssey Image 2" },
+				{ url: "/poster-alt.jpg", alt: "Glitch Odyssey Image 3" },
+			],
+		}
+	},
 ];
 
 export type ArtworkSlug = typeof artworks[number]['slug'];
