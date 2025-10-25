@@ -1,6 +1,7 @@
 ---
 import { type Artwork } from '@/constants/artworks';
 import ArtworkDisplayHeader from "./ArtworkDisplayHeader.astro";
+import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -17,7 +18,7 @@ const { artwork, className } = Astro.props;
 			<div class="bg-black relative min-w-full h-full rounded-xl overflow-clip group-[.info-open]:min-w-6/8 transition-all duration-300" id="artwork-display">
 				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
 				{artwork.metadata.type === 'interactive' && <iframe src={artwork.metadata.url} class="absolute w-full h-full"></iframe>}
-				{artwork.metadata.type === 'video' && <video controls src={artwork.metadata.videoUrl} autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video>}
+				{artwork.metadata.type === 'video' && <ArtworkDisplayVideo metadata={artwork.metadata} title={artwork.title} />}
 			</div>
 			<div class="h-full w-2/8 rounded-xl py-8 px-4 border bg-neutral-200 border-lines">
 				Hola

@@ -1,0 +1,25 @@
+---
+import { type VideoMetadata } from '@/constants/artworks';
+
+interface Props {
+	metadata: VideoMetadata;
+	title?: string;
+}
+
+const { metadata, title } = Astro.props;
+const { videoUrl, muxPlaybackId } = metadata;
+---
+
+<script>
+	import '@mux/mux-video';
+</script>
+{ muxPlaybackId ? (
+	<mux-video
+		playback-id={muxPlaybackId}
+		metadata-video-title={title}
+		disable-tracking
+		class="absolute inset-0 w-full h-full object-contain"
+	></mux-video>
+) : (
+	<video controls src={videoUrl} autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video>
+)}
