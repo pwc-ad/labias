@@ -1,22 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --header-height: 108px;
-  --weg-blue: #0f2146;
-  --weg-dark-blue: #191f24;
+  
 }
 
 @theme inline {
-  --spacing-header: var(--header-height, 108px);
-  --color-primary: var(--weg-blue, #0f2146);
-  --color-secondary: var(--weg-dark-blue, #191f24);
   --color-accent: var(--color-emerald-400);
+  --color-lines: var(--color-neutral-300);
 }
 
 @theme {
-  --font-display: "Inter", sans-serif;
-  --font-body: "Open Sans", sans-serif;
-  --animate-zoom: zoom 12s linear;
+  --color-test: #dad5d0;
 }
 
 html,
@@ -27,7 +21,7 @@ body {
 }
 
 body {
-  background-color: var(--color-gray-50);
+  background-color: var(--color-neutral-50);
   color: var(--color-gray-900);
   font-family: var(--font-roboto, sans-serif), sans-serif, system-ui;
 }
