@@ -10,9 +10,9 @@ const artworkSlugs = artworks.map((art) => art.slug);
 		window._artworkSlugs = artworkSlugs;
 	</script>
 	<script>
-		import { getTour, saveTour } from "@/utils/tour-manager";
-		import { generateArtworkUrl } from "@/utils/url-generator";
-		
+		import { getTour, saveTour } from '@/utils/tour-manager';
+		import { generateArtworkUrl } from '@/utils/url-generator';
+
 		const artworkSlugs = window._artworkSlugs;
 
 		const tour = getTour(artworkSlugs);

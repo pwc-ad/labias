@@ -1,6 +1,6 @@
 ---
-import type { Artworks } from '@/constants/artworks'
-import ArtworkListItem from './ArtworkListItem.astro'
+import type { Artworks } from '@/constants/artworks';
+import ArtworkListItem from './ArtworkListItem.astro';
 
 interface Props {
 	artworks: Artworks;
@@ -10,7 +10,5 @@ const { artworks } = Astro.props;
 ---
 
 <ul class="md:columns-2 md:gap-15 xl:columns-3 xl:gap-20">
-	{ artworks.map(artwork => (
-		<ArtworkListItem artwork={artwork} />
-	))}
+	{artworks.map((artwork) => <ArtworkListItem artwork={artwork} />)}
 </ul>

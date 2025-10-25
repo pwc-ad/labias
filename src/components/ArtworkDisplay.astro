@@ -1,6 +1,6 @@
 ---
 import { type Artwork } from '@/constants/artworks';
-import ArtworkDisplayHeader from "./ArtworkDisplayHeader.astro";
+import ArtworkDisplayHeader from './ArtworkDisplayHeader.astro';
 import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
 
 interface Props {
@@ -12,30 +12,62 @@ const { artwork, className } = Astro.props;
 ---
 
 <section class={`flex flex-col ${className}`}>
-	<ArtworkDisplayHeader artwork={artwork} fullscreenTargetId="artwork-display" />
-	<div class="flex-1 relative group" id="artwork-display-wrapper">
-		<div class="absolute inset-0 flex gap-3 rounded-xl overflow-clip">
-			<div class="bg-black relative min-w-full h-full rounded-xl overflow-clip group-[.info-open]:min-w-6/8 transition-all duration-300" id="artwork-display">
+	<ArtworkDisplayHeader
+		artwork={artwork}
+		fullscreenTargetId="artwork-display"
+	/>
+	<div class="group relative flex-1" id="artwork-display-wrapper">
+		<div class="absolute inset-0 flex gap-3 overflow-clip rounded-xl">
+			<div
+				class="relative h-full min-w-full overflow-clip rounded-xl bg-black transition-all duration-300 group-[.info-open]:min-w-6/8"
+				id="artwork-display"
+			>
 				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
-				{artwork.metadata.type === 'interactive' && <iframe src={artwork.metadata.url} class="absolute w-full h-full"></iframe>}
-				{artwork.metadata.type === 'video' && <ArtworkDisplayVideo metadata={artwork.metadata} title={artwork.title} />}
+				{
+					artwork.metadata.type === 'interactive' && (
+						<iframe
+							src={artwork.metadata.url}
+							class="absolute h-full w-full"
+						/>
+					)
+				}
+				{
+					artwork.metadata.type === 'video' && (
+						<ArtworkDisplayVideo
+							metadata={artwork.metadata}
+							title={artwork.title}
+						/>
+					)
+				}
 			</div>
-			<div class="h-full w-2/8 rounded-xl py-8 px-4 border bg-neutral-200 border-lines">
+			<div
+				class="border-lines h-full w-2/8 rounded-xl border bg-neutral-200 px-4 py-8"
+			>
 				Hola
 			</div>
 		</div>
 	</div>
 </section>
 <script>
-	(function() {
-		const infoToggleButtons = document.querySelectorAll('[data-info-toggle]');
-		const artworkDisplayWrapper = document.querySelector('#artwork-display-wrapper');
-		infoToggleButtons.forEach(infoToggleButton => {
+	(function () {
+		const infoToggleButtons =
+			document.querySelectorAll('[data-info-toggle]');
+		const artworkDisplayWrapper = document.querySelector(
+			'#artwork-display-wrapper'
+		);
+		infoToggleButtons.forEach((infoToggleButton) => {
 			infoToggleButton.addEventListener('click', () => {
 				artworkDisplayWrapper?.classList.toggle('info-open');
-				infoToggleButtons.forEach(btn => {
-					const activeClass = btn.getAttribute('data-info-toggle-active-class') || 'active';
-					btn.classList.toggle(activeClass, artworkDisplayWrapper?.classList.contains('info-open') || false);
+				infoToggleButtons.forEach((btn) => {
+					const activeClass =
+						btn.getAttribute('data-info-toggle-active-class') ||
+						'active';
+					btn.classList.toggle(
+						activeClass,
+						artworkDisplayWrapper?.classList.contains(
+							'info-open'
+						) || false
+					);
 				});
 			});
 		});

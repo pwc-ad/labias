@@ -1,5 +1,5 @@
 ---
-import type { Artwork } from '@/constants/artworks'
+import type { Artwork } from '@/constants/artworks';
 import OcticonCheckCircleFill16 from '@/icons/OcticonCheckCircleFill16.astro';
 
 interface Props {
@@ -9,12 +9,19 @@ interface Props {
 const { artwork } = Astro.props;
 const { title, author, slug, year } = artwork;
 ---
-<li class="border-b border-lines flex relative break-inside-avoid">
+
+<li class="border-lines relative flex break-inside-avoid border-b">
 	<a href={`/${slug}`} class="group flex items-center gap-3 py-3">
-		<div class="flex gap-2 items-center">
-			<p class="font-semibold relative group-hover:text-accent transition-colors duration-200 ease-out">{title}</p>
+		<div class="flex items-center gap-2">
+			<p
+				class="group-hover:text-accent relative font-semibold transition-colors duration-200 ease-out"
+			>
+				{title}
+			</p>
 			<p class="text-sm text-gray-500">({author}, {year})</p>
-			<div class="text-accent hidden group-[.visited]:block"><OcticonCheckCircleFill16 /></div>
+			<div class="text-accent hidden group-[.visited]:block">
+				<OcticonCheckCircleFill16 />
+			</div>
 		</div>
 	</a>
 </li>

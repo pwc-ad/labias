@@ -1,5 +1,4 @@
 ---
-
 interface Props {
 	label: string;
 	id?: string;
@@ -8,9 +7,10 @@ interface Props {
 const { id, label, ...rest } = Astro.props;
 ---
 
-<button id={id} aria-label={label} class="flex items-center cursor-pointer p-2 rounded-full
-	border border-lines hover:bg-accent hover:border-accent hover:text-gray-50
-	[.active]:bg-accent [.active]:border-accent [.active]:text-gray-50"
+<button
+	id={id}
+	aria-label={label}
+	class="border-lines hover:bg-accent hover:border-accent [.active]:bg-accent [.active]:border-accent flex cursor-pointer items-center rounded-full border p-2 hover:text-gray-50 [.active]:text-gray-50"
 	{...rest}
 >
 	<slot />

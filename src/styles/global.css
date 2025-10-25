@@ -1,27 +1,26 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  
 }
 
 @theme inline {
-  --color-accent: var(--color-emerald-400);
-  --color-lines: var(--color-neutral-300);
+	--color-accent: var(--color-emerald-400);
+	--color-lines: var(--color-neutral-300);
 }
 
 @theme {
-  --color-test: #dad5d0;
+	--color-test: #dad5d0;
 }
 
 html,
 body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
+	margin: 0;
+	width: 100%;
+	height: 100%;
 }
 
 body {
-  background-color: var(--color-neutral-50);
-  color: var(--color-gray-900);
-  font-family: var(--font-roboto, sans-serif), sans-serif, system-ui;
+	background-color: var(--color-neutral-50);
+	color: var(--color-gray-900);
+	font-family: var(--font-roboto, sans-serif), sans-serif, system-ui;
 }

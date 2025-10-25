@@ -1,9 +1,9 @@
 ---
-import type { Artwork } from "@/constants/artworks";
-import ButtonIcon from "./ButtonIcon.astro";
-import OcticonScreenFull16 from "@/icons/OcticonScreenFull16.astro";
-import ButtonText from "./ButtonText.astro";
-import OcticonPlus16 from "@/icons/OcticonPlus16.astro";
+import type { Artwork } from '@/constants/artworks';
+import ButtonIcon from './ButtonIcon.astro';
+import OcticonScreenFull16 from '@/icons/OcticonScreenFull16.astro';
+import ButtonText from './ButtonText.astro';
+import OcticonPlus16 from '@/icons/OcticonPlus16.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -14,39 +14,58 @@ const { artwork, fullscreenTargetId } = Astro.props;
 const { title, author, year } = artwork;
 ---
 
-<header class="px-6 pt-3 pb-3 flex items-center gap-3">
+<header class="flex items-center gap-3 px-6 pt-3 pb-3">
 	<h1 class="text-xl font-bold tracking-tight">{title}</h1>
 	<p class="text-lg">({author}, {year})</p>
-	<div class="flex-1 flex justify-end gap-3">
-		{fullscreenTargetId && <ButtonIcon label="Toggle Fullscreen" data-fullscreen-target={fullscreenTargetId} id="fullscreen-button">
-			<OcticonScreenFull16 />
-		</ButtonIcon>}
-		<ButtonIcon data-info-toggle data-info-toggle-active-class="active" label="More Info">
+	<div class="flex flex-1 justify-end gap-3">
+		{
+			fullscreenTargetId && (
+				<ButtonIcon
+					label="Toggle Fullscreen"
+					data-fullscreen-target={fullscreenTargetId}
+					id="fullscreen-button"
+				>
+					<OcticonScreenFull16 />
+				</ButtonIcon>
+			)
+		}
+		<ButtonIcon
+			data-info-toggle
+			data-info-toggle-active-class="active"
+			label="More Info"
+		>
 			<OcticonPlus16 />
 		</ButtonIcon>
 	</div>
 </header>
 <script>
-	(function() {
+	(function () {
 		const fullscreenButton = document.getElementById('fullscreen-button');
-		if(!fullscreenButton) return;
-		const isFullscreenSupported = document.fullscreenEnabled || (document as any).webkitFullscreenEnabled || (document as any).msFullscreenEnabled;
-		if(!isFullscreenSupported) {
+		if (!fullscreenButton) return;
+		const isFullscreenSupported =
+			document.fullscreenEnabled ||
+			(document as any).webkitFullscreenEnabled ||
+			(document as any).msFullscreenEnabled;
+		if (!isFullscreenSupported) {
 			fullscreenButton.style.display = 'none';
 			return;
 		}
-		const fullscreenTargetId = fullscreenButton.getAttribute('data-fullscreen-target');
-		if(!fullscreenTargetId) return;
+		const fullscreenTargetId = fullscreenButton.getAttribute(
+			'data-fullscreen-target'
+		);
+		if (!fullscreenTargetId) return;
 		const fullscreenTarget = document.getElementById(fullscreenTargetId);
-		if(!fullscreenTarget) return;
-	
+		if (!fullscreenTarget) return;
+
 		fullscreenButton.addEventListener('click', () => {
 			const fst = fullscreenTarget as any;
 			if (fst.requestFullscreen) {
 				fst.requestFullscreen();
-			} else if (fst.webkitRequestFullscreen) { /* Safari */
+			} else if (fst.webkitRequestFullscreen) {
+				/* Safari */
 				fst.webkitRequestFullscreen();
-			} else if (fst.msRequestFullscreen) { /* IE11 */
+			} else if (fst.msRequestFullscreen) {
+				/* IE11 */
 				fst.msRequestFullscreen();
 			}
 		});

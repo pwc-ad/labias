@@ -1,17 +1,24 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@mux/mux-video": "^0.27.1",
-    "@tailwindcss/vite": "^4.1.14",
-    "astro": "^5.14.1",
-    "tailwindcss": "^4.1.14"
-  }
+	"name": "labias",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format:check": "prettier .",
+		"format": "prettier . --write"
+	},
+	"dependencies": {
+		"@mux/mux-video": "^0.27.1",
+		"@tailwindcss/vite": "^4.1.14",
+		"astro": "^5.14.1",
+		"tailwindcss": "^4.1.14"
+	},
+	"devDependencies": {
+		"prettier": "3.6.2",
+		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-tailwindcss": "0.7.1"
+	}
 }

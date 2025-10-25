@@ -1,18 +1,18 @@
 ---
-import type { GetStaticPaths } from "astro";
+import type { GetStaticPaths } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import labiaLogo from '../assets/labias.svg';
 import Logo from '@/components/Logo.astro';
 import ArtworkList from '@/components/ArtworkList.astro';
 import { artworks } from '@/constants/artworks';
-import Header from "@/components/Header.astro";
-import ArtworkDisplay from "@/components/ArtworkDisplay.astro";
+import Header from '@/components/Header.astro';
+import ArtworkDisplay from '@/components/ArtworkDisplay.astro';
 
-export const getStaticPaths = (() => {
+export const getStaticPaths = () => {
 	return artworks.map((artwork) => ({
 		params: { artwork: artwork.slug },
 	}));
-});
+};
 
 const { artwork: artworkSlug } = Astro.params;
 const artwork = artworks.find((art) => art.slug === artworkSlug)!;
@@ -22,22 +22,46 @@ const currentArtworkSlug = artwork?.slug;
 ---
 
 <Layout>
-	<div class="px-3 mx-auto min-h-full flex flex-col-reverse justify-between">
+	<div class="mx-auto flex min-h-full flex-col-reverse justify-between px-3">
 		<Header buttonNextId="next-artwork" />
 		<ArtworkDisplay artwork={artwork} className="flex-1" />
 	</div>
 	<div class="h-1/2 p-3">
-		<div class="p-6 flex flex-col gap-30 pb-20">
+		<div class="flex flex-col gap-30 p-6 pb-20">
 			<article>
-				<h2 class="font-bold tracking-tight text-xl my-8">Artworks</h2>
+				<h2 class="my-8 text-xl font-bold tracking-tight">Artworks</h2>
 				<ArtworkList artworks={artworks} />
 			</article>
 			<article class="flex flex-col items-end text-end">
-				<h2 class="font-bold tracking-tight text-xl my-8">About / Credits</h2>
-				<div class="max-w-3xl text-sm flex flex-col gap-5 leading-6">
-					<p><i class="text-accent font-bold not-italic">Labias</i> is a pavilion of <b class="font-semibold">The Wrong Biennale</b>, curated by <b class="font-semibold">Ignacio Guerra</b> in collaboration with <b class="font-semibold">José Casanova</b>.</p>
-					<p>The project was developed by the study group <b class="font-semibold">Programación Web Creativa y Arte Digital (UNTREF)</b>, with the support of the <b class="font-semibold">Laboratorio de Arte Electrónico e Inteligencia Artificial (UNTREF)</b> and the <b class="font-semibold">Diplomatura en Inteligencia Artificial aplicada al Arte Multimedial (UNA)</b>.</p>
-					<p>Special thanks to all the artists whose work made this pavilion possible.</p>
+				<h2 class="my-8 text-xl font-bold tracking-tight">
+					About / Credits
+				</h2>
+				<div class="flex max-w-3xl flex-col gap-5 text-sm leading-6">
+					<p>
+						<i class="text-accent font-bold not-italic">Labias</i> is
+						a pavilion of <b class="font-semibold"
+							>The Wrong Biennale</b
+						>, curated by <b class="font-semibold">Ignacio Guerra</b
+						> in collaboration with <b class="font-semibold"
+							>José Casanova</b
+						>.
+					</p>
+					<p>
+						The project was developed by the study group <b
+							class="font-semibold"
+							>Programación Web Creativa y Arte Digital (UNTREF)</b
+						>, with the support of the <b class="font-semibold"
+							>Laboratorio de Arte Electrónico e Inteligencia
+							Artificial (UNTREF)</b
+						> and the <b class="font-semibold"
+							>Diplomatura en Inteligencia Artificial aplicada al
+							Arte Multimedial (UNA)</b
+						>.
+					</p>
+					<p>
+						Special thanks to all the artists whose work made this
+						pavilion possible.
+					</p>
 					<p>Made width ❤️ from 🇦🇷</p>
 				</div>
 			</article>
@@ -48,9 +72,9 @@ const currentArtworkSlug = artwork?.slug;
 		window._currentArtworkSlug = currentArtworkSlug;
 	</script>
 	<script>
-		import { getTour, saveTour } from "@/utils/tour-manager";
-		import { generateArtworkUrl } from "@/utils/url-generator";
-		
+		import { getTour, saveTour } from '@/utils/tour-manager';
+		import { generateArtworkUrl } from '@/utils/url-generator';
+
 		const artworkSlugs = window._artworkSlugs;
 		const currentArtworkSlug = window._currentArtworkSlug;
 
@@ -59,10 +83,12 @@ const currentArtworkSlug = artwork?.slug;
 		saveTour(tour);
 
 		tour.visitedSlugs.forEach((slug) => {
-			const linkElement = document.querySelector(`a[href='${generateArtworkUrl(slug)}']`);
+			const linkElement = document.querySelector(
+				`a[href='${generateArtworkUrl(slug)}']`
+			);
 			linkElement?.classList.add('visited');
 		});
-		
+
 		const nextArtworkButton = document.getElementById('next-artwork');
 		nextArtworkButton?.addEventListener('click', () => {
 			const nextArtworkSlug = tour.getNextArtworkSlug(currentArtworkSlug);
