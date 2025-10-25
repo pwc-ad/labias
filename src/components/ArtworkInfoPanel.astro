@@ -1,0 +1,36 @@
+---
+import { type Artwork } from '@/constants/artworks';
+import ArtworkDisplayHeader from './ArtworkDisplayHeader.astro';
+import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
+
+interface Props {
+	artwork: Artwork;
+	artworkContent?: any;
+}
+
+const { artwork, artworkContent } = Astro.props;
+const { slug } = artwork;
+
+let Content;
+if (artworkContent) {
+	const { Content: MarkdownContent } = await artworkContent.render();
+	Content = MarkdownContent;
+}
+---
+
+<div
+	class="h-full rounded-xl bg-neutral-50 py-8"
+	id="artwork-info"
+>
+	<div class="h-full pl-16 pr-8 overflow-auto">
+		{Content && (
+			<div class="prose prose-sm max-w-none
+				prose-h2:text-base prose-h3:text-sm prose-p:text-sm
+				prose-a:text-accent hover:prose-a:underline
+				prose-strong:font-semibold
+			">
+				<Content />
+			</div>
+		)}
+	</div>
+</div>

@@ -70,13 +70,13 @@ export const artworks: Artworks = [
 		},
 	},
 	{
-		slug: 'static-reverie',
-		title: 'Static Reverie',
-		author: 'Yara Kim',
-		year: 2022,
+		slug: 'circulos-blandos-y-semillas',
+		title: 'Círculos Blandos y Semillas',
+		author: 'Federico Abrile',
+		year: 2024,
 		metadata: {
-			type: 'video',
-			videoUrl: '/video/video.mp4',
+			type: 'interactive',
+			url: 'https://fabrile.github.io/CirculosBlandosSimple/',
 		},
 	},
 	{

@@ -1,8 +1,6 @@
 ---
-import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import labiaLogo from '../assets/labias.svg';
-import Logo from '@/components/Logo.astro';
 import ArtworkList from '@/components/ArtworkList.astro';
 import { artworks } from '@/constants/artworks';
 import Header from '@/components/Header.astro';
@@ -19,12 +17,30 @@ const artwork = artworks.find((art) => art.slug === artworkSlug)!;
 const { title, author } = artwork || {};
 const artworkSlugs = artworks.map((art) => art.slug);
 const currentArtworkSlug = artwork?.slug;
+
+// Load markdown content (try Spanish first, then English)
+let artworkContent;
+try {
+	const esContent = await getCollection('es' as any);
+	artworkContent = esContent.find((entry: any) => entry.slug === artworkSlug);
+} catch (e) {
+	// Spanish content not found
+}
+
+if (!artworkContent) {
+	try {
+		const enContent = await getCollection('en' as any);
+		artworkContent = enContent.find((entry: any) => entry.slug === artworkSlug);
+	} catch (e) {
+		// English content not found
+	}
+}
 ---
 
 <Layout>
 	<div class="mx-auto flex min-h-full flex-col-reverse justify-between px-3">
 		<Header buttonNextId="next-artwork" />
-		<ArtworkDisplay artwork={artwork} className="flex-1" />
+		<ArtworkDisplay artwork={artwork} artworkContent={artworkContent} className="flex-1" />
 	</div>
 	<div class="h-1/2 p-3">
 		<div class="flex flex-col gap-30 p-6 pb-20">

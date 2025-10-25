@@ -51,7 +51,18 @@ class TourManager {
 	}
 }
 
+const dropTourIfOutdated = (artworkSlugs: string[]) => {
+	const artworkListHash = artworkSlugs.join('|');
+	const storedHash = localStorage.getItem('tour-hash');
+	if (storedHash !== artworkListHash) {
+		localStorage.removeItem('tour');
+		localStorage.setItem('tour-hash', artworkListHash);
+	}
+}
+
 export const getTour = (artworkSlugs: string[]) => {
+	dropTourIfOutdated(artworkSlugs);
+	
 	const storedTour = localStorage.getItem('tour');
 	const tourManager = storedTour
 		? new TourManager(JSON.parse(storedTour))
