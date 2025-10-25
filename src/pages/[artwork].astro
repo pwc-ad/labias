@@ -83,6 +83,14 @@ if (!artworkContent) {
 			</article>
 		</div>
 	</div>
+	  <script>
+    declare global {
+      interface Window {
+        _artworkSlugs: string[];
+        _currentArtworkSlug: string;
+      }
+    }
+  </script>
 	<script define:vars={{ artworkSlugs, currentArtworkSlug }}>
 		window._artworkSlugs = artworkSlugs;
 		window._currentArtworkSlug = currentArtworkSlug;
@@ -91,28 +99,28 @@ if (!artworkContent) {
 		import { getTour, saveTour } from '@/utils/tour-manager';
 		import { generateArtworkUrl } from '@/utils/url-generator';
 
-		const artworkSlugs = window._artworkSlugs;
-		const currentArtworkSlug = window._currentArtworkSlug;
+    const artworkSlugs = window._artworkSlugs;
+    const currentArtworkSlug = window._currentArtworkSlug;
 
-		const tour = getTour(artworkSlugs);
-		tour.markVisited(currentArtworkSlug);
-		saveTour(tour);
+    const tour = getTour(artworkSlugs);
+    tour.markVisited(currentArtworkSlug);
+    saveTour(tour);
 
-		tour.visitedSlugs.forEach((slug) => {
-			const linkElement = document.querySelector(
-				`a[href='${generateArtworkUrl(slug)}']`
-			);
-			linkElement?.classList.add('visited');
-		});
+    tour.visitedSlugs.forEach((slug) => {
+      const linkElement = document.querySelector(
+        `a[href='${generateArtworkUrl(slug)}']`
+      );
+      linkElement?.classList.add("visited");
+    });
 
-		const nextArtworkButton = document.getElementById('next-artwork');
-		nextArtworkButton?.addEventListener('click', () => {
-			const nextArtworkSlug = tour.getNextArtworkSlug(currentArtworkSlug);
-			if (nextArtworkSlug) {
-				window.location.href = generateArtworkUrl(nextArtworkSlug);
-			} else {
-				console.error('No next artwork found');
-			}
-		});
-	</script>
+    const nextArtworkButton = document.getElementById("next-artwork");
+    nextArtworkButton?.addEventListener("click", () => {
+      const nextArtworkSlug = tour.getNextArtworkSlug(currentArtworkSlug);
+      if (nextArtworkSlug) {
+        window.location.href = generateArtworkUrl(nextArtworkSlug);
+      } else {
+        console.error("No next artwork found");
+      }
+    });
+  </script>
 </Layout>
