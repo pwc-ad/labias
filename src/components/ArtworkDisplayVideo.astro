@@ -7,28 +7,59 @@ interface Props {
 }
 
 const { metadata, title } = Astro.props;
-const { videoUrl, muxPlaybackId } = metadata;
+const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 ---
 
 <script>
 	import '@mux/mux-video';
 </script>
-{
-	muxPlaybackId ? (
-		<mux-video
-			playback-id={muxPlaybackId}
-			metadata-video-title={title}
-			disable-tracking
-			class="absolute inset-0 h-full w-full object-contain"
-		/>
-	) : (
-		<video
-			controls
-			src={videoUrl}
-			autoplay
-			loop
-			muted
-			class="absolute inset-0 h-full w-full object-contain"
-		/>
-	)
-}
+<div class="bg-black absolute inset-0 h-full w-full">
+	{
+		muxPlaybackId ? (
+			<mux-video
+				id="the-video"
+				class="block h-full w-full object-contain"
+				autoplay
+				poster={posterUrl}
+				playback-id={muxPlaybackId}
+				metadata-video-title={title}
+				disable-tracking
+			/>
+		) : (
+			<video
+				id="the-video"
+				class="block h-full w-full object-contain"
+				autoplay
+				poster={posterUrl}
+				src={videoUrl}
+			/>
+		)
+	}
+	<button id="play-pause-button" class="block absolute inset-0 w-full h-full cursor-pointer">
+		<span class="sr-only">Play/Pause</span>
+	</button>
+</div>
+<script>
+	(function () {
+		const video = document.getElementById('the-video') as HTMLVideoElement;
+		const button = document.getElementById('play-pause-button') as HTMLButtonElement;
+		if (!video || !button) return;
+
+		function updateButton() {
+			const span = button.querySelector('span');
+			if (!span) return;
+			span.textContent = video.paused ? 'Play' : 'Pause';
+		}
+
+		button.addEventListener('click', () => {
+			if (video.paused) {
+				video.play();
+			} else {
+				video.pause();
+			}
+			updateButton();
+		});
+
+		updateButton();
+	})();
+</script>

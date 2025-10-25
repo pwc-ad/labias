@@ -3,6 +3,7 @@ export type ArtworkType = 'video' | 'image' | 'interactive' | 'audio';
 export interface VideoMetadata {
 	type: 'video';
 	videoUrl: string;
+	posterUrl: string;
 	muxPlaybackId?: string;
 }
 
@@ -46,6 +47,7 @@ export const artworks: Artworks = [
 			videoUrl:
 				'https://stream.mux.com/00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo.m3u8',
 			muxPlaybackId: '00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo',
+			posterUrl: '/video/poster.jpg',
 		},
 	},
 	{
@@ -57,6 +59,7 @@ export const artworks: Artworks = [
 			type: 'video',
 			videoUrl:
 				'https://stream.mux.com/QHd3wlW5MSvV0002pdOUv02iYNge01mejga7qHa9mjqisDc.m3u8',
+			posterUrl: '/video/poster.jpg',
 		},
 	},
 	{
@@ -87,6 +90,7 @@ export const artworks: Artworks = [
 		metadata: {
 			type: 'video',
 			videoUrl: '/video/video.mp4',
+			posterUrl: '/video/poster.jpg',
 		},
 	},
 	{
@@ -97,6 +101,7 @@ export const artworks: Artworks = [
 		metadata: {
 			type: 'video',
 			videoUrl: '/video/video.mp4',
+			posterUrl: '/video/poster.jpg',
 		},
 	},
 	{
@@ -107,6 +112,7 @@ export const artworks: Artworks = [
 		metadata: {
 			type: 'video',
 			videoUrl: '/video/video.mp4',
+			posterUrl: '/video/poster.jpg',
 		},
 	},
 ];
