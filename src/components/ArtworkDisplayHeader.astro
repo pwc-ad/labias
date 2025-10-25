@@ -21,7 +21,7 @@ const { title, author, year } = artwork;
 		{fullscreenTargetId && <ButtonIcon label="Toggle Fullscreen" data-fullscreen-target={fullscreenTargetId} id="fullscreen-button">
 			<OcticonScreenFull16 />
 		</ButtonIcon>}
-		<ButtonIcon id="more-info" label="More Info">
+		<ButtonIcon data-info-toggle data-info-toggle-active-class="active" label="More Info">
 			<OcticonPlus16 />
 		</ButtonIcon>
 	</div>

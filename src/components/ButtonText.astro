@@ -11,7 +11,10 @@ const hasPrepend = Astro.slots.has('prepend');
 const hasAppend = Astro.slots.has('append');
 ---
 
-<button id={id} class="flex items-center gap-2 font-bold cursor-pointer lowercase border border-lines hover:bg-accent hover:border-accent hover:text-gray-50 px-5 py-1 rounded-full">
+<button id={id} class="flex items-center gap-2 font-bold cursor-pointer lowercase px-5 py-1 rounded-full
+	border border-lines hover:bg-accent hover:border-accent hover:text-gray-50
+	[.active]:bg-accent [.active]:border-accent [.active]:text-gray-50"
+	>
 	{hasPrepend && <span class="-ml-2"><slot name="prepend" /></span>}
 	{text}
 	{hasAppend && <span class="-mr-2"><slot name="append" /></span>}
