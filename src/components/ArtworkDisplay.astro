@@ -11,10 +11,10 @@ const { artwork, className } = Astro.props;
 ---
 
 <section class={`flex flex-col ${className}`}>
-	<ArtworkDisplayHeader artwork={artwork} />
+	<ArtworkDisplayHeader artwork={artwork} fullscreenTargetId="artwork-display" />
 	<div class="flex-1 relative group">
 		<div class="absolute inset-0 flex gap-3 rounded-xl overflow-clip">
-			<div class="bg-black relative min-w-full h-full rounded-xl overflow-clip group-hover:min-w-6/8 transition-all duration-300" id="dp">
+			<div class="bg-black relative min-w-full h-full rounded-xl overflow-clip group-hover:min-w-6/8 transition-all duration-300" id="artwork-display">
 				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
 				{artwork.metadata.type === 'interactive' && <iframe src={artwork.metadata.url} class="absolute w-full h-full"></iframe>}
 				{artwork.metadata.type === 'video' && <video controls src={artwork.metadata.videoUrl} autoplay loop muted class="absolute inset-0 w-full h-full object-contain"></video>}
@@ -23,24 +23,5 @@ const { artwork, className } = Astro.props;
 				Hola
 			</div>
 		</div>
-		<button id="fullscreen-button" class="absolute bottom-4 right-4 bg-black text-white px-4 py-2 rounded">Fullscreen</button>
 	</div>
 </section>
-
-<script>
-	const fullscreenButton = document.getElementById('fullscreen-button');
-	const displayPanel = document.getElementById('dp');
-
-	if (fullscreenButton && displayPanel) {
-		fullscreenButton.addEventListener('click', () => {
-			const dp = displayPanel as any;
-			if (dp.requestFullscreen) {
-				dp.requestFullscreen();
-			} else if (dp.webkitRequestFullscreen) { /* Safari */
-				dp.webkitRequestFullscreen();
-			} else if (dp.msRequestFullscreen) { /* IE11 */
-				dp.msRequestFullscreen();
-			}
-		});
-	}
-</script>

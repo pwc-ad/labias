@@ -1,5 +1,8 @@
 ---
 import Logo from '@/components/Logo.astro';
+import OcticonArrowRight16 from '@/icons/OcticonArrowRight16.astro';
+import ButtonText from './ButtonText.astro';
+import ButtonIcon from './ButtonIcon.astro';
 
 interface Props {
 	buttonNextId?: string;
@@ -8,11 +11,16 @@ interface Props {
 const { buttonNextId = 'next-artwork' } = Astro.props;
 ---
 
-<header class="pl-6 py-3 pb-4 flex justify-between items-end">
+<header class="px-6 py-3 pb-4 flex justify-between items-end">
 	<div class="text-2xl text-accent">
 		<Logo />
 	</div>
-	<button id={buttonNextId} class="font-bold cursor-pointer lowercase border border-lines hover:bg-accent hover:border-accent hover:text-gray-50 px-5 py-1 rounded-full">
-		Visit next 
-	</button>
+	<div class="text-lg">
+		<!-- <ButtonText id={buttonNextId} text='Next Artwork'>
+			<OcticonArrowRight16 slot="append" />
+		</ButtonText> -->
+		<ButtonIcon label="Next Artwork" id={buttonNextId}>
+			<OcticonArrowRight16 />
+		</ButtonIcon>
+	</div>
 </header>

@@ -1,6 +1,6 @@
 ---
 import type { Artwork } from '@/constants/artworks'
-import PhCheckCircleFill from '@/icons/PhCheckCircleFill.astro';
+import OcticonCheckCircleFill16 from '@/icons/OcticonCheckCircleFill16.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -14,7 +14,7 @@ const { title, author, slug, year } = artwork;
 		<div class="flex gap-2 items-center">
 			<p class="font-semibold relative group-hover:text-accent transition-colors duration-200 ease-out">{title}</p>
 			<p class="text-sm text-gray-500">({author}, {year})</p>
-			<div class="text-accent hidden group-[.visited]:block"><PhCheckCircleFill /></div>
+			<div class="text-accent hidden group-[.visited]:block"><OcticonCheckCircleFill16 /></div>
 		</div>
 	</a>
 </li>
