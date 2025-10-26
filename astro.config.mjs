@@ -6,6 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
+		server: {
+			headers: {
+				'Cross-Origin-Embedder-Policy': 'unsafe-none',
+				'Cross-Origin-Resource-Policy': 'cross-origin',
+			},
+		},
 	},
 	experimental: {
 		fonts: [

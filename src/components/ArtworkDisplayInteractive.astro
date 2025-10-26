@@ -1,0 +1,21 @@
+---
+import { type Artwork } from '@/constants/artworks';
+
+interface Props {
+	artwork: Artwork;
+}
+
+const { artwork } = Astro.props;
+
+if (artwork.metadata.type !== 'interactive') {
+	throw new Error('ArtworkDisplayInteractive requires interactive metadata');
+}
+
+const { url } = artwork.metadata;
+---
+
+<iframe
+	src={url}
+	class="absolute h-full w-full"
+	loading="lazy"
+></iframe>

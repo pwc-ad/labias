@@ -26,7 +26,7 @@ export interface Artwork {
 	slug: string;
 	title: string;
 	author: string;
-	year: number;
+	year: number | string;
 	metadata:
 		| VideoMetadata
 		| ImageMetadata
@@ -105,14 +105,13 @@ export const artworks: Artworks = [
 		},
 	},
 	{
-		slug: 'reel-static',
-		title: 'Reel Static',
-		author: 'S. Nakamoto',
-		year: 2020,
+		slug: 'zdg',
+		title: 'ZDG',
+		author: 'C53',
+		year: "2024-2025",
 		metadata: {
-			type: 'video',
-			videoUrl: '/video/video.mp4',
-			posterUrl: '/video/poster.jpg',
+			type: 'interactive',
+			url: 'https://c53.ar/zdg',
 		},
 	},
 	{
