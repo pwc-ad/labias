@@ -11,7 +11,7 @@ const id = `gallery-${Math.random().toString(36).slice(2, 9)}`;
 const hasMultiple = images.length > 1;
 ---
 
-<div id={id} class="absolute inset-0 w-full h-full overflow-hidden bg-neutral-200">
+<div id={id} class="absolute inset-0 w-full py-2 h-full overflow-hidden bg-black">
   <div
     id={`${id}-slider`}
     class="flex h-full w-full items-center snap-x snap-mandatory overflow-x-auto scroll-smooth hide-scrollbar"
