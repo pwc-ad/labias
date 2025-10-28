@@ -21,6 +21,8 @@ const config = {
 	trailingComma: 'es5',
 	tabWidth: 4,
 	singleQuote: true,
+	// https://github.com/paolotiu/tailwind-intellisense-regex-list?tab=readme-ov-file#dom
+	tailwindAttributes: ['\\s*.className\\s*=\\s*[\'\\"](.*?)[\'\\"]'],
 };
 
 export default config;

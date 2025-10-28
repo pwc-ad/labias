@@ -3,8 +3,7 @@ title: 'The greatest post of all time'
 author: 'Ben'
 ---
 
-Descripción general
--------------------
+## Descripción general
 
 “Círculos Blandos y Semillas” es una serie de arte generativo que inicia con un ejercicio visual: dibujos anotados en un cuaderno. En el núcleo de esta serie se encuentran algunas matemáticas que cobran vida en figuras imposibles de predecir completamente.
 
@@ -28,15 +27,13 @@ Desarrollo de algoritmos en **HTML5, JavaScript y CSS**, utilizando software y h
 
 **Dibujos robóticos** realizados con **Rotring sobre placas de espuma de 15 × 15 cm**, ejecutados por un robot hecho de materiales reciclados.
 
-BIO - Federico Abrile
----------------------
+## BIO - Federico Abrile
 
 Artista visual, ingeniero y docente. Trabaja con tecnología, plotters CNC, realidad aumentada y multimedia. Ha participado en muestras colectivas como Periódica, Evolutiva y El Recorrido de las Artes. En 2023 presentó la primer muestra individual de arte generativo en San Luis.
 
 Actualmente vive y desarrolla sus actividades en San Luis, Argentina.
 
-Statement
----------
+## Statement
 
 Mi proceso comienza con disparadores que surgen en situaciones que me atraviesan: lecturas, actividades con amigues o experiencias de la vida cotidiana.
 

@@ -28,29 +28,43 @@ const hasMultiple = images.length > 1;
     ))}
   </div>
 
-  <!-- Flecha de avance -->
-  {hasMultiple && (
-    <button
-      type="button"
-      aria-label="Siguiente imagen"
-      class="absolute cursor-pointer hover:scale-120 right-4 top-1/2 -translate-y-1/2 text-black p-3 z-10 hidden md:flex"
-      onclick={`(()=>{const s=document.getElementById("${id}-slider");if(!s)return;const slides=s.querySelectorAll("div");if(!slides.length)return;const w=s.clientWidth;const idx=Math.round(s.scrollLeft/w);const next=(idx+1)%slides.length;s.scrollTo({left:next*w,behavior:'smooth'});})()`}
-    >
-      <span aria-hidden="true" class="text-5xl">›</span>
-    </button>
-  )}
+	<!-- Flecha de avance -->
+	{
+		hasMultiple && (
+			<button
+				type="button"
+				aria-label="Siguiente imagen"
+				class="absolute top-1/2 right-4 z-10 hidden -translate-y-1/2 cursor-pointer p-3 text-black hover:scale-120 md:flex"
+				onclick={`(()=>{const s=document.getElementById("${id}-slider");if(!s)return;const slides=s.querySelectorAll("div");if(!slides.length)return;const w=s.clientWidth;const idx=Math.round(s.scrollLeft/w);const next=(idx+1)%slides.length;s.scrollTo({left:next*w,behavior:'smooth'});})()`}
+			>
+				<span aria-hidden="true" class="text-5xl">
+					›
+				</span>
+			</button>
+		)
+	}
 
-  <!-- Lightbox overlay -->
-  <div
-    id="lightbox"
-    class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50"
-  >
-    <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain" />
-  </div>
+	<!-- Lightbox overlay -->
+	<div
+		id="lightbox"
+		class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90"
+	>
+		<img
+			id="lightbox-img"
+			src=""
+			alt=""
+			class="max-h-[90vh] max-w-[90vw] object-contain"
+		/>
+	</div>
 </div>
 
 <!-- Scrollbar oculto -->
 <style>
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
-  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	.hide-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
 </style>

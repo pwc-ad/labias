@@ -58,11 +58,11 @@ const dropTourIfOutdated = (artworkSlugs: string[]) => {
 		localStorage.removeItem('tour');
 		localStorage.setItem('tour-hash', artworkListHash);
 	}
-}
+};
 
 export const getTour = (artworkSlugs: string[]) => {
 	dropTourIfOutdated(artworkSlugs);
-	
+
 	const storedTour = localStorage.getItem('tour');
 	const tourManager = storedTour
 		? new TourManager(JSON.parse(storedTour))

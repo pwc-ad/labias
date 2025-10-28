@@ -1,0 +1,22 @@
+---
+import { CURSOR_LAYERS } from '@/constants/cursor';
+---
+
+<div
+	class="bg-accent pointer-events-none fixed -inset-12 z-50 flex size-28 items-center justify-center rounded-full p-2 opacity-0 will-change-transform"
+	id={CURSOR_LAYERS.pointer}
+>
+	<p
+		class="text-center font-bold text-neutral-950"
+		id={CURSOR_LAYERS.content}
+	>
+	</p>
+</div>
+
+<script>
+	if (matchMedia('(hover: hover)').matches) {
+		import('./index').then(({ createCustomCursor }) => {
+			createCustomCursor();
+		});
+	}
+</script>

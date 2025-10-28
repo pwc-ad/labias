@@ -129,16 +129,16 @@ export const artworks: Artworks = [
 		slug: 'zdg',
 		title: 'ZDG',
 		author: 'C53',
-		year: "2024-2025",
+		year: '2024-2025',
 		metadata: {
 			type: 'interactive',
 			url: 'https://c53.ar/zdg',
 		},
 	},
 	{
-		slug: "glitch-odyssey",
-		title: "Glitch Odyssey",
-		author: "Elena Petrova",
+		slug: 'glitch-odyssey',
+		title: 'Glitch Odyssey',
+		author: 'Elena Petrova',
 		year: 2023,
 		metadata: {
 			type: 'image',

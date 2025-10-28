@@ -22,10 +22,11 @@ const { artwork, artworkContent, className } = Astro.props;
 	<div class="group relative flex-1" id="artwork-display-wrapper">
 		<div class="absolute inset-0 flex overflow-clip">
 			<div
-				class="relative h-full overflow-clip transition-transform duration-600 w-full min-w-full group-[.info-open]:-translate-x-60 sm:group-[.info-open]:-translate-x-80"
-				
+				class="relative h-full w-full min-w-full overflow-clip transition-transform duration-600 group-[.info-open]:-translate-x-60 sm:group-[.info-open]:-translate-x-80"
 			>
-				<div class="w-[100vw] h-full relative group-[.info-open]:translate-x-30 sm:group-[.info-open]:translate-x-40 transition-transform duration-500">
+				<div
+					class="relative h-full w-[100vw] transition-transform duration-500 group-[.info-open]:translate-x-30 sm:group-[.info-open]:translate-x-40"
+				>
 					<div id="artwork-display">
 						<ArtworkDisplayFactory artwork={artwork} />
 					</div>
@@ -33,9 +34,7 @@ const { artwork, artworkContent, className } = Astro.props;
 				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
 				{
 					artwork.metadata.type === 'interactive' && (
-						<ArtworkDisplayInteractive
-							artwork={artwork}
-						/>
+						<ArtworkDisplayInteractive artwork={artwork} />
 					)
 				}
 			<div
@@ -45,29 +44,29 @@ const { artwork, artworkContent, className } = Astro.props;
 			</div>
 		</div>
 	</div>
-</section>
-<script>
-	(function () {
-		const infoToggleButtons =
-			document.querySelectorAll('[data-info-toggle]');
-		const artworkDisplayWrapper = document.querySelector(
-			'#artwork-display-wrapper'
-		);
-		infoToggleButtons.forEach((infoToggleButton) => {
-			infoToggleButton.addEventListener('click', () => {
-				artworkDisplayWrapper?.classList.toggle('info-open');
-				infoToggleButtons.forEach((btn) => {
-					const activeClass =
-						btn.getAttribute('data-info-toggle-active-class') ||
-						'active';
-					btn.classList.toggle(
-						activeClass,
-						artworkDisplayWrapper?.classList.contains(
-							'info-open'
-						) || false
-					);
+	<script>
+		(function () {
+			const infoToggleButtons =
+				document.querySelectorAll('[data-info-toggle]');
+			const artworkDisplayWrapper = document.querySelector(
+				'#artwork-display-wrapper'
+			);
+			infoToggleButtons.forEach((infoToggleButton) => {
+				infoToggleButton.addEventListener('click', () => {
+					artworkDisplayWrapper?.classList.toggle('info-open');
+					infoToggleButtons.forEach((btn) => {
+						const activeClass =
+							btn.getAttribute('data-info-toggle-active-class') ||
+							'active';
+						btn.classList.toggle(
+							activeClass,
+							artworkDisplayWrapper?.classList.contains(
+								'info-open'
+							) || false
+						);
+					});
 				});
 			});
-		});
-	})();
-</script>
+		})();
+	</script>
+</section>
