@@ -13,16 +13,15 @@ const { artwork } = Astro.props;
 <div>
 	{
 		artwork.metadata.type == 'image' && (
-			<ArtworkDisplayGallery
-				metadata={artwork.metadata}
-			/>
+			<ArtworkDisplayGallery metadata={artwork.metadata} />
 		)
 	}
 	{
 		artwork.metadata.type === 'interactive' && (
 			<iframe
+				data-cursor-default="true"
 				src={artwork.metadata.url}
-				class="absolute h-full w-full"
+				class="absolute size-full"
 			/>
 		)
 	}
