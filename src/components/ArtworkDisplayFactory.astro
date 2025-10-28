@@ -1,0 +1,37 @@
+---
+import { type Artwork } from '@/constants/artworks';
+import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
+import ArtworkDisplayGallery from './ArtworkDisplayGallery.astro';
+
+interface Props {
+	artwork: Artwork;
+}
+
+const { artwork } = Astro.props;
+---
+
+<div>
+	{
+		artwork.metadata.type == 'image' && (
+			<ArtworkDisplayGallery
+				metadata={artwork.metadata}
+			/>
+		)
+	}
+	{
+		artwork.metadata.type === 'interactive' && (
+			<iframe
+				src={artwork.metadata.url}
+				class="absolute h-full w-full"
+			/>
+		)
+	}
+	{
+		artwork.metadata.type === 'video' && (
+			<ArtworkDisplayVideo
+				metadata={artwork.metadata}
+				title={artwork.title}
+			/>
+		)
+	}
+</div>

@@ -1,11 +1,9 @@
 ---
 import { type Artwork } from '@/constants/artworks';
-import type { CollectionEntry } from 'astro:content';
 import ArtworkDisplayHeader from './ArtworkDisplayHeader.astro';
-import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
 import ArtworkInfoPanel from './ArtworkInfoPanel.astro';
-import Gallery from './Gallery.astro';
 import ArtworkDisplayInteractive from './ArtworkDisplayInteractive.astro';
+import ArtworkDisplayFactory from './ArtworkDisplayFactory.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -22,31 +20,14 @@ const { artwork, artworkContent, className } = Astro.props;
 		fullscreenTargetId="artwork-display"
 	/>
 	<div class="group relative flex-1" id="artwork-display-wrapper">
-		<div class="absolute inset-0 flex overflow-clip rounded-xl border border-lines">
+		<div class="absolute inset-0 flex overflow-clip">
 			<div
 				class="relative h-full overflow-clip transition-transform duration-600 w-full min-w-full group-[.info-open]:-translate-x-60 sm:group-[.info-open]:-translate-x-80"
 				
 			>
 				<div class="w-[100vw] h-full relative group-[.info-open]:translate-x-30 sm:group-[.info-open]:translate-x-40 transition-transform duration-500">
 					<div id="artwork-display">
-						
-					{(artwork.metadata.type == 'image' && artwork.metadata.images.length > 0) && <Gallery photos={artwork.metadata.images} className="inset-0" />}
-					{
-						artwork.metadata.type === 'interactive' && (
-							<iframe
-								src={artwork.metadata.url}
-								class="absolute h-full w-full"
-							/>
-						)
-					}
-					{
-						artwork.metadata.type === 'video' && (
-							<ArtworkDisplayVideo
-								metadata={artwork.metadata}
-								title={artwork.title}
-							/>
-						)
-					}
+						<ArtworkDisplayFactory artwork={artwork} />
 					</div>
 				</div>
 				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
@@ -58,7 +39,7 @@ const { artwork, artworkContent, className } = Astro.props;
 					)
 				}
 			<div
-				class="w-[80vw] max-w-100 h-full translate-x-full group-[.info-open]:translate-x-0 transition-transform duration-400 absolute right-0 top-0"
+				class="w-[80vw] max-w-120 h-full translate-x-full group-[.info-open]:translate-x-0 transition-transform duration-400 absolute right-0 top-0"
 			>
 				<ArtworkInfoPanel artwork={artwork} artworkContent={artworkContent} />
 			</div>

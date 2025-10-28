@@ -7,7 +7,7 @@ export interface VideoMetadata {
 	muxPlaybackId?: string;
 }
 
-export interface ImageMetadata {
+export interface GalleryMetadata {
 	type: 'image';
 	images: {
 		url: string;
@@ -29,7 +29,7 @@ export interface Artwork {
 	year: number | string;
 	metadata:
 		| VideoMetadata
-		| ImageMetadata
+		| GalleryMetadata
 		| InteractiveMetadata
 		| AudioMetadata;
 }
@@ -99,9 +99,30 @@ export const artworks: Artworks = [
 		author: 'Anika Bose',
 		year: 2025,
 		metadata: {
-			type: 'video',
-			videoUrl: '/video/video.mp4',
-			posterUrl: '/video/poster.jpg',
+			type: 'image',
+			images: [
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626715/1_my7grb.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626719/2_yixnpy.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626713/3_djoulf.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626709/4_y9rw02.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626710/5_pjlc5y.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626711/6_l2sza2.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626709/7_dfq5k8.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626709/8_juczsk.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626708/9_bbwjnp.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626709/10_pxajbk.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626709/11_we1hph.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626710/12_oxgqjp.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626712/13_sgu8ah.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626715/14_tbybsd.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626710/15_armelz.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626713/16_y7ks0s.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626713/17_fukig9.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626710/18_wxxcqf.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626715/19_a074eh.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626712/20_drualt.jpg', alt: '' },
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761626712/21_sq77el.jpg', alt: '' },
+			]
 		},
 	},
 	{
@@ -120,12 +141,10 @@ export const artworks: Artworks = [
 		author: "Elena Petrova",
 		year: 2023,
 		metadata: {
-			type: "image",
+			type: 'image',
 			images: [
-				{ url: "/historia.jpg", alt: "Glitch Odyssey Image 1" },
-				{ url: "/poster.jpg", alt: "Glitch Odyssey Image 2" },
-				{ url: "/poster-alt.jpg", alt: "Glitch Odyssey Image 3" },
-			],
+				{ url: 'https://res.cloudinary.com/dvnjoza1p/image/upload/v1761624607/Ajustadxs_zjq5hk.jpg', alt: '' },
+			]
 		}
 	},
 ];
