@@ -37,36 +37,41 @@ const { artwork, artworkContent, className } = Astro.props;
 						<ArtworkDisplayInteractive artwork={artwork} />
 					)
 				}
-			<div
-				class="w-[80vw] max-w-120 h-full translate-x-full group-[.info-open]:translate-x-0 transition-transform duration-400 absolute right-0 top-0"
-			>
-				<ArtworkInfoPanel artwork={artwork} artworkContent={artworkContent} />
+				<div
+					class="absolute top-0 right-0 h-full w-[80vw] max-w-120 translate-x-full transition-transform duration-400 group-[.info-open]:translate-x-0"
+				>
+					<ArtworkInfoPanel
+						artwork={artwork}
+						artworkContent={artworkContent}
+					/>
+				</div>
 			</div>
 		</div>
-	</div>
-	<script>
-		(function () {
-			const infoToggleButtons =
-				document.querySelectorAll('[data-info-toggle]');
-			const artworkDisplayWrapper = document.querySelector(
-				'#artwork-display-wrapper'
-			);
-			infoToggleButtons.forEach((infoToggleButton) => {
-				infoToggleButton.addEventListener('click', () => {
-					artworkDisplayWrapper?.classList.toggle('info-open');
-					infoToggleButtons.forEach((btn) => {
-						const activeClass =
-							btn.getAttribute('data-info-toggle-active-class') ||
-							'active';
-						btn.classList.toggle(
-							activeClass,
-							artworkDisplayWrapper?.classList.contains(
-								'info-open'
-							) || false
-						);
+		<script>
+			(function () {
+				const infoToggleButtons =
+					document.querySelectorAll('[data-info-toggle]');
+				const artworkDisplayWrapper = document.querySelector(
+					'#artwork-display-wrapper'
+				);
+				infoToggleButtons.forEach((infoToggleButton) => {
+					infoToggleButton.addEventListener('click', () => {
+						artworkDisplayWrapper?.classList.toggle('info-open');
+						infoToggleButtons.forEach((btn) => {
+							const activeClass =
+								btn.getAttribute(
+									'data-info-toggle-active-class'
+								) || 'active';
+							btn.classList.toggle(
+								activeClass,
+								artworkDisplayWrapper?.classList.contains(
+									'info-open'
+								) || false
+							);
+						});
 					});
 				});
-			});
-		})();
-	</script>
+			})();
+		</script>
+	</div>
 </section>

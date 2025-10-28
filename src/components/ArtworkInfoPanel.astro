@@ -18,19 +18,14 @@ if (artworkContent) {
 }
 ---
 
-<div
-	class="h-full bg-neutral-50"
-	id="artwork-info"
->
-	<div class="h-full py-8 pl-12 pr-8 overflow-auto">
-		{Content && (
-			<div class="prose prose-sm max-w-none
-				prose-h2:text-base prose-h3:text-sm prose-p:text-sm
-				prose-a:text-accent hover:prose-a:underline
-				prose-strong:font-semibold
-			">
-				<Content />
-			</div>
-		)}
+<div class="h-full bg-neutral-50" id="artwork-info">
+	<div class="h-full overflow-auto py-8 pr-8 pl-12">
+		{
+			Content && (
+				<div class="prose prose-sm prose-h2:text-base prose-h3:text-sm prose-p:text-sm prose-a:text-accent hover:prose-a:underline prose-strong:font-semibold max-w-none">
+					<Content />
+				</div>
+			)
+		}
 	</div>
 </div>

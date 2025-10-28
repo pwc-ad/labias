@@ -2,7 +2,7 @@
 import { type GalleryMetadata } from '@/constants/artworks';
 
 interface Props {
-  metadata: GalleryMetadata;
+	metadata: GalleryMetadata;
 }
 
 const { metadata } = Astro.props;
@@ -11,22 +11,27 @@ const id = `gallery-${Math.random().toString(36).slice(2, 9)}`;
 const hasMultiple = images.length > 1;
 ---
 
-<div id={id} class="absolute inset-0 w-full py-2 h-full overflow-hidden bg-black">
-  <div
-    id={`${id}-slider`}
-    class="flex h-full w-full items-center snap-x snap-mandatory overflow-x-auto scroll-smooth hide-scrollbar"
-  >
-    {images.map((image) => (
-      <div class="shrink-0 w-full h-full snap-center flex items-center justify-center">
-        <img
-          src={image.url}
-          alt={image.alt ?? ""}
-          class="object-contain w-full h-full cursor-zoom-in"
-          onclick={`(()=>{const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');if(!lb||!img)return;img.src='${image.url}';lb.classList.remove('hidden');lb.classList.add('flex');const close=()=>{lb.classList.add('hidden');lb.classList.remove('flex');document.removeEventListener('keydown',esc)};const esc=(e)=>{if(e.key==='Escape')close();};lb.onclick=close;document.addEventListener('keydown',esc);})()`}
-        />
-      </div>
-    ))}
-  </div>
+<div
+	id={id}
+	class="absolute inset-0 h-full w-full overflow-hidden bg-black py-2"
+>
+	<div
+		id={`${id}-slider`}
+		class="hide-scrollbar flex h-full w-full snap-x snap-mandatory items-center overflow-x-auto scroll-smooth"
+	>
+		{
+			images.map((image) => (
+				<div class="flex h-full w-full shrink-0 snap-center items-center justify-center">
+					<img
+						src={image.url}
+						alt={image.alt ?? ''}
+						class="h-full w-full cursor-zoom-in object-contain"
+						onclick={`(()=>{const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');if(!lb||!img)return;img.src='${image.url}';lb.classList.remove('hidden');lb.classList.add('flex');const close=()=>{lb.classList.add('hidden');lb.classList.remove('flex');document.removeEventListener('keydown',esc)};const esc=(e)=>{if(e.key==='Escape')close();};lb.onclick=close;document.addEventListener('keydown',esc);})()`}
+					/>
+				</div>
+			))
+		}
+	</div>
 
 	<!-- Flecha de avance -->
 	{
