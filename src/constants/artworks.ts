@@ -7,7 +7,7 @@ export interface VideoMetadata {
 	muxPlaybackId?: string;
 }
 
-export interface ImageMetadata {
+export interface GalleryMetadata {
 	type: 'image';
 	images: {
 		url: string;
@@ -29,7 +29,7 @@ export interface Artwork {
 	year: number;
 	metadata:
 		| VideoMetadata
-		| ImageMetadata
+		| GalleryMetadata
 		| InteractiveMetadata
 		| AudioMetadata;
 }

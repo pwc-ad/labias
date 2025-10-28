@@ -1,31 +1,28 @@
 ---
-interface Photo {
-  url: string;
-  alt?: string;
-}
+import { type GalleryMetadata } from '@/constants/artworks';
 
 interface Props {
-  photos: Photo[];
-  className?: string;
+  metadata: GalleryMetadata;
 }
 
-const { photos = [], className = "" } = Astro.props;
+const { metadata } = Astro.props;
+const { images } = metadata;
 const id = `gallery-${Math.random().toString(36).slice(2, 9)}`;
-const hasMultiple = photos.length > 1;
+const hasMultiple = images.length > 1;
 ---
 
-<div id={id} class={`absolute inset-0 w-full h-fulloverflow-hidden ${className}`}>
+<div id={id} class="absolute inset-0 w-full h-full overflow-hidden bg-neutral-200">
   <div
     id={`${id}-slider`}
     class="flex h-full w-full items-center snap-x snap-mandatory overflow-x-auto scroll-smooth hide-scrollbar"
   >
-    {photos.map((photo) => (
+    {images.map((image) => (
       <div class="shrink-0 w-full h-full snap-center flex items-center justify-center">
         <img
-          src={photo.url}
-          alt={photo.alt ?? ""}
+          src={image.url}
+          alt={image.alt ?? ""}
           class="object-contain w-full h-full cursor-zoom-in"
-          onclick={`(()=>{const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');if(!lb||!img)return;img.src='${photo.url}';lb.classList.remove('hidden');lb.classList.add('flex');const close=()=>{lb.classList.add('hidden');lb.classList.remove('flex');document.removeEventListener('keydown',esc)};const esc=(e)=>{if(e.key==='Escape')close();};lb.onclick=close;document.addEventListener('keydown',esc);})()`}
+          onclick={`(()=>{const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');if(!lb||!img)return;img.src='${image.url}';lb.classList.remove('hidden');lb.classList.add('flex');const close=()=>{lb.classList.add('hidden');lb.classList.remove('flex');document.removeEventListener('keydown',esc)};const esc=(e)=>{if(e.key==='Escape')close();};lb.onclick=close;document.addEventListener('keydown',esc);})()`}
         />
       </div>
     ))}
