@@ -1,0 +1,20 @@
+---
+interface Props {
+	src: string;
+	alt?: string;
+	mode?: 'slide' | 'gallery';
+}
+
+const { src, alt = '', mode = 'gallery', ...rest } = Astro.props;
+const wrapperClass = mode === 'slide'
+	? 'h-full w-full'
+	: 'h-full max-w-full';
+---
+
+<div class={`flex shrink-0 snap-center items-center justify-center ${wrapperClass}`} {...rest}>
+	<img
+		src={src}
+		alt={alt}
+		class="h-full w-full object-contain"
+	/>
+</div>

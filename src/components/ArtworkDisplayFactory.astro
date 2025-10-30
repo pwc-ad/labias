@@ -1,7 +1,8 @@
 ---
 import { type Artwork } from '@/constants/artworks';
 import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
-import ArtworkDisplayGallery from './ArtworkDisplayGallery.astro';
+import ArtworkDisplayGallery from './ArtworkDisplayGalleryAlt.astro';
+import ArtworkDisplayInteractive from './ArtworkDisplayInteractive.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -18,11 +19,7 @@ const { artwork } = Astro.props;
 	}
 	{
 		artwork.metadata.type === 'interactive' && (
-			<iframe
-				data-cursor-default="true"
-				src={artwork.metadata.url}
-				class="absolute size-full"
-			/>
+			<ArtworkDisplayInteractive artwork={artwork} />
 		)
 	}
 	{

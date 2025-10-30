@@ -2,7 +2,6 @@
 import { type Artwork } from '@/constants/artworks';
 import ArtworkDisplayHeader from './ArtworkDisplayHeader.astro';
 import ArtworkInfoPanel from './ArtworkInfoPanel.astro';
-import ArtworkDisplayInteractive from './ArtworkDisplayInteractive.astro';
 import ArtworkDisplayFactory from './ArtworkDisplayFactory.astro';
 
 interface Props {
@@ -31,20 +30,14 @@ const { artwork, artworkContent, className } = Astro.props;
 						<ArtworkDisplayFactory artwork={artwork} />
 					</div>
 				</div>
-				<!-- <img src="/poster.jpg" class="absolute inset-0 w-full h-full object-cover" /> -->
-				{
-					artwork.metadata.type === 'interactive' && (
-						<ArtworkDisplayInteractive artwork={artwork} />
-					)
-				}
-				<div
-					class="absolute top-0 right-0 h-full w-[80vw] max-w-120 translate-x-full transition-transform duration-400 group-[.info-open]:translate-x-0"
-				>
-					<ArtworkInfoPanel
-						artwork={artwork}
-						artworkContent={artworkContent}
-					/>
-				</div>
+			</div>
+			<div
+				class="absolute top-0 right-0 h-full w-[80vw] max-w-120 translate-x-full transition-transform duration-400 group-[.info-open]:translate-x-0"
+			>
+				<ArtworkInfoPanel
+					artwork={artwork}
+					artworkContent={artworkContent}
+				/>
 			</div>
 		</div>
 		<script>

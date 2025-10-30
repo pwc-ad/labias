@@ -1,69 +1,97 @@
 ---
 import { type GalleryMetadata } from '@/constants/artworks';
+import ArtworkDisplayGalleryElement from './ArtworkDisplayGalleryElement.astro';
 
 interface Props {
 	metadata: GalleryMetadata;
+	mode: 'slide' | 'gallery';
 }
 
 const { metadata } = Astro.props;
 const { images } = metadata;
-const id = `gallery-${Math.random().toString(36).slice(2, 9)}`;
 const hasMultiple = images.length > 1;
 ---
 
 <div
-	id={id}
-	class="absolute inset-0 h-full w-full overflow-hidden bg-neutral-200"
+	class="absolute inset-0 flex justify-center h-full w-full overflow-hidden bg-black p-2"
 >
 	<div
-		id={`${id}-slider`}
-		class="hide-scrollbar flex h-full w-full snap-x snap-mandatory items-center overflow-x-auto scroll-smooth"
+		class="hide-scrollbar flex gap-2 h-full max-w-full snap-x snap-mandatory items-center overflow-x-auto scroll-smooth"
+		data-gallery-slider
 	>
 		{
 			images.map((image) => (
-				<div class="flex h-full w-full shrink-0 snap-center items-center justify-center">
-					<img
-						src={image.url}
-						alt={image.alt ?? ''}
-						class="h-full w-full cursor-zoom-in object-contain"
-						onclick={`(()=>{const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');if(!lb||!img)return;img.src='${image.url}';lb.classList.remove('hidden');lb.classList.add('flex');const close=()=>{lb.classList.add('hidden');lb.classList.remove('flex');document.removeEventListener('keydown',esc)};const esc=(e)=>{if(e.key==='Escape')close();};lb.onclick=close;document.addEventListener('keydown',esc);})()`}
-					/>
-				</div>
+				<ArtworkDisplayGalleryElement 
+					src={image.url}
+					alt={image.alt}
+					mode="slide"
+					data-gallery-slide
+				/>
 			))
 		}
 	</div>
-
-	<!-- Flecha de avance -->
 	{
 		hasMultiple && (
 			<button
 				type="button"
-				aria-label="Siguiente imagen"
-				class="absolute top-1/2 right-4 z-10 hidden -translate-y-1/2 cursor-pointer p-3 text-black hover:scale-120 md:flex"
-				onclick={`(()=>{const s=document.getElementById("${id}-slider");if(!s)return;const slides=s.querySelectorAll("div");if(!slides.length)return;const w=s.clientWidth;const idx=Math.round(s.scrollLeft/w);const next=(idx+1)%slides.length;s.scrollTo({left:next*w,behavior:'smooth'});})()`}
+				aria-label="Next"
+				class="absolute top-0 bottom-0 right-0 w-1/4 cursor-pointer pointer-events-none"
+				data-gallery-next
 			>
-				<span aria-hidden="true" class="text-5xl">
-					›
-				</span>
+			</button>
+			<button
+				type="button"
+				aria-label="Previous"
+				class="absolute top-0 bottom-0 left-0 w-1/4 cursor-pointer pointer-events-none"
+				data-gallery-prev
+			>
 			</button>
 		)
 	}
-
-	<!-- Lightbox overlay -->
-	<div
-		id="lightbox"
-		class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90"
-	>
-		<img
-			id="lightbox-img"
-			src=""
-			alt=""
-			class="max-h-[90vh] max-w-[90vw] object-contain"
-		/>
-	</div>
 </div>
+<script>
+	(() => {
+		const slider = document.querySelector('[data-gallery-slider]');
+		const slides = slider?.querySelectorAll('[data-gallery-slide]');
+		if (!slider || !slides?.length) return;
+	
+		const nextButton = document.querySelector('[data-gallery-next]');
+		const prevButton = document.querySelector('[data-gallery-prev]');
 
-<!-- Scrollbar oculto -->
+		const totalSlides = slides.length;
+		let currentIndex = 0;
+
+		const toggleButtonDisabledState = (force?: boolean) => {
+			nextButton?.classList.toggle('pointer-events-none', force || currentIndex >= totalSlides - 1);
+			prevButton?.classList.toggle('pointer-events-none', force || currentIndex <= 0);
+		};
+		toggleButtonDisabledState();
+
+		const updateScrollPosition = () => {
+			const slideWidth = slider.clientWidth;
+			slider.scrollTo({
+				left: currentIndex * slideWidth,
+				behavior: 'smooth',
+			})
+			toggleButtonDisabledState(true);
+			slider.addEventListener('scrollend', () => {
+				toggleButtonDisabledState(false);
+			}, { once: true });
+		}
+	
+		nextButton?.addEventListener('click', () => {
+			if (currentIndex >= totalSlides - 1) return;
+			currentIndex++;
+			updateScrollPosition();
+		});
+
+		prevButton?.addEventListener('click', () => {
+			if (currentIndex <= 0) return;
+			currentIndex--;
+			updateScrollPosition();
+		});
+	})()
+</script>
 <style>
 	.hide-scrollbar::-webkit-scrollbar {
 		display: none;

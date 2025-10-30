@@ -51,14 +51,15 @@ export const artworks: Artworks = [
 		},
 	},
 	{
-		slug: 'nocturne-echoes',
-		title: 'Nocturne Echoes',
-		author: 'María Duarte',
+		slug: 'sedimental',
+		title: 'Sedimental',
+		author: 'Gonzalo Tello',
 		year: 2024,
 		metadata: {
 			type: 'video',
-			videoUrl:
-				'https://stream.mux.com/QHd3wlW5MSvV0002pdOUv02iYNge01mejga7qHa9mjqisDc.m3u8',
+			videoUrl: '/video/video.mp4',
+			// videoUrl: 
+				// 'https://stream.mux.com/QHd3wlW5MSvV0002pdOUv02iYNge01mejga7qHa9mjqisDc.m3u8',
 			posterUrl: '/video/poster.jpg',
 		},
 	},
