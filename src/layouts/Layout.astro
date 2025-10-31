@@ -1,6 +1,23 @@
 ---
 import Cursor from '@/components/interactive/cursor/Cursor.astro';
 import '@/styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	author?: string;
+}
+
+const {
+	title = 'Labias',
+	description = '',
+	image = 'poster.jpg',
+	author = '',
+} = Astro.props;
+
+const siteTitle = `${title} | TheWrong Biennale + Labias`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -10,7 +27,25 @@ import '@/styles/global.css';
 		<meta name="viewport" content="width=device-width" />
 		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 		<meta name="generator" content={Astro.generator} />
-		<title>Labias + The Wrong Biennale</title>
+
+		<!-- SEO -->
+		<title>{siteTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content={author} />
+
+		<!-- Open Graph -->
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={image} />
+		<meta property="og:type" content="website" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={siteTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
+		<meta name="twitter:url" content={canonicalURL} />
 	</head>
 	<body>
 		<slot />

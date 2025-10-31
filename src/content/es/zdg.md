@@ -1,6 +1,8 @@
 ---
 title: 'ZDG'
 author: 'C53'
+description: ''
+image: ''
 ---
 
 ## Descripción general

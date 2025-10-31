@@ -37,19 +37,19 @@ export interface Artwork {
 export type Artworks = Artwork[];
 
 export const artworks: Artworks = [
-	{
-		slug: 'titulo-obra',
-		title: 'Título Obra',
-		author: 'Nombre Artista',
-		year: 2025,
-		metadata: {
-			type: 'video',
-			videoUrl:
-				'https://stream.mux.com/00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo.m3u8',
-			muxPlaybackId: '00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo',
-			posterUrl: '/video/poster.jpg',
-		},
-	},
+	// {
+	// 	slug: 'titulo-obra',
+	// 	title: 'Título Obra',
+	// 	author: 'Nombre Artista',
+	// 	year: 2025,
+	// 	metadata: {
+	// 		type: 'video',
+	// 		videoUrl:
+	// 			'https://stream.mux.com/00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo.m3u8',
+	// 		muxPlaybackId: '00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo',
+	// 		posterUrl: '/video/poster.jpg',
+	// 	},
+	// },
 	{
 		slug: 'sedimental',
 		title: 'Sedimental',
@@ -57,20 +57,20 @@ export const artworks: Artworks = [
 		year: 2024,
 		metadata: {
 			type: 'video',
-			videoUrl: '/video/video.mp4',
-			// videoUrl: 
-				// 'https://stream.mux.com/QHd3wlW5MSvV0002pdOUv02iYNge01mejga7qHa9mjqisDc.m3u8',
+			videoUrl:
+				'https://stream.mux.com/QHd3wlW5MSvV0002pdOUv02iYNge01mejga7qHa9mjqisDc.m3u8',
+			muxPlaybackId: 'QHd3wlW5MSvV0002pdOUv02iYNge01mejga7qHa9mjqisDc',
 			posterUrl: '/video/poster.jpg',
 		},
 	},
 	{
-		slug: 'analog-dreams',
-		title: 'Analog Dreams',
-		author: 'Luca Ferri',
-		year: 2023,
+		slug: 'agua-limpia-aire-limpio',
+		title: 'Agua limpia, aire limpio',
+		author: 'TAMAAINA',
+		year: 2025,
 		metadata: {
 			type: 'interactive',
-			url: 'https://radicalsoftware.xyz/labs/en/vertex-sphere/',
+			url: 'https://editor.p5js.org/tamourac/full/LNPWtPFZ3',
 		},
 	},
 	{
@@ -84,20 +84,21 @@ export const artworks: Artworks = [
 		},
 	},
 	{
-		slug: 'tape-memory',
-		title: 'Tape Memory',
-		author: 'Omar R.',
-		year: 2021,
+		slug: 'perfect-candidate',
+		title: 'Perfect Candidate',
+		author: 'Florencia Marina Romero',
+		year: 2025,
 		metadata: {
 			type: 'video',
-			videoUrl: '/video/video.mp4',
+			videoUrl: 'https://stream.mux.com/gZZDbSTs00One0201DYNhc4Rv4q16rCeF6mm2cRV1snzGk.m3u8',
+			muxPlaybackId: 'gZZDbSTs00One0201DYNhc4Rv4q16rCeF6mm2cRV1snzGk',
 			posterUrl: '/video/poster.jpg',
 		},
 	},
 	{
-		slug: 'chromatic-haze',
-		title: 'Chromatic Haze',
-		author: 'Anika Bose',
+		slug: 'it-was-almost-night-by-the-beach',
+		title: 'It was almost night by the beach',
+		author: 'Federico Grinbank',
 		year: 2025,
 		metadata: {
 			type: 'image',
@@ -200,10 +201,10 @@ export const artworks: Artworks = [
 		},
 	},
 	{
-		slug: 'glitch-odyssey',
-		title: 'Glitch Odyssey',
-		author: 'Elena Petrova',
-		year: 2023,
+		slug: 'ajustadxs',
+		title: 'Ajustadxs',
+		author: 'nivvvo',
+		year: 2025,
 		metadata: {
 			type: 'image',
 			images: [

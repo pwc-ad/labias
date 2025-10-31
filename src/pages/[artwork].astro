@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import ArtworkList from '@/components/ArtworkList.astro';
 import { artworks } from '@/constants/artworks';
@@ -18,28 +18,30 @@ const { title, author } = artwork || {};
 const artworkSlugs = artworks.map((art) => art.slug);
 const currentArtworkSlug = artwork?.slug;
 
-// Load markdown content (try Spanish first, then English)
-let artworkContent;
-try {
-	const esContent = await getCollection('es' as any);
-	artworkContent = esContent.find((entry: any) => entry.slug === artworkSlug);
-} catch (e) {
-	// Spanish content not found
-}
-
-if (!artworkContent) {
+const getContent = async (
+	lang: 'en' | 'es'
+): Promise<CollectionEntry<'en' | 'es'> | undefined> => {
 	try {
-		const enContent = await getCollection('en' as any);
-		artworkContent = enContent.find(
-			(entry: any) => entry.slug === artworkSlug
-		);
+		const collection = await getCollection(lang);
+		return collection.find((entry) => entry.slug === artworkSlug);
 	} catch (e) {
-		// English content not found
+		return undefined;
 	}
-}
+};
+
+const artworkContent = (await getContent('es')) || (await getContent('en'));
+
+const metadata = artworkContent?.data;
+const description = metadata?.description || '';
+const image = metadata?.image || 'poster.jpg';
 ---
 
-<Layout>
+<Layout
+	title={title}
+	author={author}
+	description={description}
+	image={image}
+>
 	<div
 		class="--px-3 mx-auto flex min-h-full flex-col-reverse justify-between"
 	>

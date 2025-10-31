@@ -12,7 +12,7 @@ const { buttonNextId = 'next-artwork' } = Astro.props;
 ---
 
 <header class="flex items-end justify-between px-6 py-3 pb-3">
-	<div class="--text-accent text-2xl">
+	<div class="[.scrolled]:text-accent text-2xl transition-colors duration-300" id="logo-wrapper">
 		<Logo />
 	</div>
 	<div class="text-lg">
@@ -24,3 +24,28 @@ const { buttonNextId = 'next-artwork' } = Astro.props;
 		</ButtonIcon>
 	</div>
 </header>
+
+<script>
+	const logoWrapper = document.getElementById('logo-wrapper');
+
+	if (logoWrapper) {
+		window.addEventListener(
+			'scroll',
+			() => {
+				const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+				if (scrollHeight <= 0) {
+					logoWrapper.classList.remove('scrolled');
+					return;
+				}
+				const scrollPercent = (window.scrollY / scrollHeight) * 100;
+
+				if (scrollPercent >= 25) {
+					logoWrapper.classList.add('scrolled');
+				} else {
+					logoWrapper.classList.remove('scrolled');
+				}
+			},
+			{ passive: true }
+		);
+	}
+</script>

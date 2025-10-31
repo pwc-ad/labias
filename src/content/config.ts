@@ -5,6 +5,8 @@ const es = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		author: z.string(),
+		description: z.string(),
+		image: z.string(),
 	}),
 });
 
@@ -13,6 +15,8 @@ const en = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		author: z.string(),
+		description: z.string(),
+		image: z.string(),
 	}),
 });
 

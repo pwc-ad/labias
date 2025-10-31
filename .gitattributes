@@ -1,0 +1,51 @@
+* text=auto eol=lf
+
+# Handle line endings automatically for files detected as text
+# and force LF (Unix) line endings for other files.
+* text=auto eol=lf
+
+# Declare files that will always have LF line endings.
+*.js eol=lf
+*.ts eol=lf
+*.astro eol=lf
+*.json eol=lf
+*.md eol=lf
+
+# Declare files that will always have CRLF line endings.
+*.bat eol=crlf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.webm binary
+*.mp3 binary
+*.wav binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Exclude from archives
+/public/video/** export-ignore
+/src/assets/** export-ignore
+*.png export-ignore
+*.jpg export-ignore
+*.jpeg export-ignore
+*.gif export-ignore
+*.webp export-ignore
+*.ico export-ignore
+*.mp4 export-ignore
+*.mov export-ignore
+*.avi export-ignore
+*.webm export-ignore
+*.mp3 export-ignore
+*.wav export-ignore
+*.otf export-ignore
+*.woff export-ignore
+*.woff2 export-ignore

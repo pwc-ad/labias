@@ -1,6 +1,8 @@
 ---
-title: 'The greatest post of all time'
-author: 'Ben'
+title: 'Círculos Blandos y Semillas'
+author: 'Federico Abrile'
+description: ''
+image: 'og/circulos-blandos-y-semillas.png'
 ---
 
 ## Descripción general

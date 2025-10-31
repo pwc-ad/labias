@@ -1,6 +1,8 @@
 ---
 title: 'Sedimental'
 author: 'Gonzalo Tello'
+description: ''
+image: 'og/sedimental.jpg'
 ---
 
 _Sedimental_ is a sensorial journey where earth and mind intertwine. With a subtle, suggestive structure, the short film explores how memories and emotions settle within our psyche, shaping who we become. An object unearthed in childhood unleashes a supernatural presence that grows alongside the protagonists, as matter and dreamlike visions merge into an ever-shifting identity. Between the physical and the mental, between decay and revelation, a latent question surfaces: What grows from what we leave unsaid?
