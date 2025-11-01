@@ -7,7 +7,6 @@ import {
 	type CursorLayers,
 	type CursorMode,
 } from '@/constants/cursor';
-import { animate, motionValue, springValue, styleEffect } from 'motion';
 
 // TODO use a class instead?
 
@@ -18,7 +17,6 @@ export function createCustomCursor() {
 		passive: true,
 		signal: controller.signal,
 	} as const;
-	const unsubscribers: Array<() => void> = [];
 
 	const cursor = {
 		elements: {
@@ -32,39 +30,76 @@ export function createCustomCursor() {
 		state: {
 			content: '',
 			mode: null! as CursorMode,
+			isVisible: false,
+			isContentVisible: false,
+			isInactive: false,
 		},
 	};
 
-	// MOVEMENT
-	const x = motionValue(window.innerWidth / 2);
-	const y = motionValue(window.innerHeight / 2);
-	// OPACITY
-	const opacity = motionValue(0);
-	// SCALE
-	const cursorBaseScale = 0.3;
-	const scale = springValue<number>(cursorBaseScale);
+	// Position tracking
+	let currentX = window.innerWidth / 2;
+	let currentY = window.innerHeight / 2;
 
-	unsubscribers.push(
-		styleEffect(cursor.elements.pointer, {
-			opacity,
-			x,
-			y,
-			scale,
-		})
-	);
+	let nextX = currentX;
+	let nextY = currentY;
 
-	const contentOpacity = motionValue(0);
+	// Inactivity tracking
+	let inactivityTimer: number | null = null;
 
-	unsubscribers.push(
-		styleEffect(cursor.elements.content, {
-			opacity: contentOpacity,
-		})
-	);
+	function updatePosition(x: number, y: number) {
+		nextX = x;
+		nextY = y;
+
+		// Reset inactive state on movement
+		if (cursor.state.isInactive) {
+			cursor.state.isInactive = false;
+			cursor.elements.pointer.classList.remove('inactive');
+		}
+
+		// Clear existing timer
+		if (inactivityTimer !== null) {
+			clearTimeout(inactivityTimer);
+		}
+
+		// Set new timer for inactivity
+		inactivityTimer = window.setTimeout(() => {
+			cursor.state.isInactive = true;
+			cursor.elements.pointer.classList.add('inactive');
+		}, 1000);
+	}
+
+	function animateCursor() {
+		currentX += (nextX - currentX) * 0.2;
+		currentY += (nextY - currentY) * 0.2;
+		cursor.elements.pointer.style.left = `${currentX}px`;
+		cursor.elements.pointer.style.top = `${currentY}px`;
+
+		requestAnimationFrame(animateCursor);
+	}
+
+	animateCursor()
+
+	function setVisible(visible: boolean) {
+		if (cursor.state.isVisible === visible) return;
+		cursor.state.isVisible = visible;
+		cursor.elements.pointer.classList.toggle('visible', visible);
+	}
+
+	function setContentVisible(visible: boolean) {
+		if (cursor.state.isContentVisible === visible) return;
+		cursor.state.isContentVisible = visible;
+		cursor.elements.content.classList.toggle('visible', visible);
+	}
 
 	async function removeContent() {
 		if (cursor.state.mode === 'interactive') {
-			return animate(contentOpacity, 0).then(() => {
-				cursor.elements.content.textContent = '';
+			setContentVisible(false);
+			cursor.elements.content.textContent = '';
+			return new Promise<void>((resolve) => {
+				// setTimeout(() => {
+				// 	resolve();
+				// }, 200); // Match CSS transition duration
+				resolve();
 			});
 		}
 
@@ -77,11 +112,18 @@ export function createCustomCursor() {
 		function handleResize() {
 			const { left, top } =
 				cursor.elements.pointer.getBoundingClientRect();
-			x.set(Math.min(left, window.innerWidth));
-			y.set(Math.min(top, window.innerHeight));
+			updatePosition(
+				Math.min(left, window.innerWidth),
+				Math.min(top, window.innerHeight)
+			);
 		},
 		eventListenerDefaultOptions
 	);
+
+	window.addEventListener('click', () => {
+		cursor.state.isInactive = true;
+		cursor.elements.pointer.classList.add('inactive');
+	});
 
 	const cursorDataAttributesKeys = Object.values(CURSOR_DATA_ATTRIBUTES);
 
@@ -109,49 +151,42 @@ export function createCustomCursor() {
 			return;
 		}
 
-		const current = opacity.get();
-		const previous = opacity.getPrevious();
-		const isFadingIn = current > (previous ?? 0);
-
-		async function maybeFadeIn() {
-			document.body.setAttribute('data-has-custom-cursor', 'true');
-			if (!isFadingIn) {
-				return animate(opacity, 1, { duration: 0.5 });
-			}
-			return Promise.resolve();
-		}
-
 		switch (cursorInteraction) {
 			case 'custom': {
 				removeContent().then(() => {
-					maybeFadeIn();
-					animate(scale, cursorBaseScale);
+					document.body.setAttribute('data-has-custom-cursor', 'false');
+					setVisible(true);
+					cursor.elements.pointer.classList.remove('interactive');
+					cursor.elements.pointer.classList.add('custom');
 					cursor.state.content = '';
 				});
 				break;
 			}
 			case 'interactive': {
-				removeContent()
-					.then(() => {
-						maybeFadeIn();
-						return animate(scale, 1);
-					})
-					.then(() => {
+				removeContent().then(() => {
+					document.body.setAttribute('data-has-custom-cursor', 'true');
+					setVisible(true);
+					cursor.elements.pointer.classList.remove('custom');
+					cursor.elements.pointer.classList.add('interactive');
+					
+					// Wait for scale animation before showing content
+					// setTimeout(() => {
 						cursor.elements.content.textContent =
 							cursor.state.content = content as string;
-						animate(contentOpacity, 1);
-					});
+						setContentVisible(true);
+					// }, 150); // Slightly less than transform transition
+				});
 				break;
 			}
 
 			case 'default': {
 				document.body.setAttribute('data-has-custom-cursor', 'false');
-				animate(scale, cursorBaseScale, { duration: 0.2 });
-				animate(opacity, 0, { duration: 0.2 });
-				animate(contentOpacity, 0, { duration: 0.2 }).then(() => {
-					cursor.elements.content.textContent = cursor.state.content =
-						'';
-				});
+				cursor.elements.pointer.classList.remove('interactive', 'custom');
+				setVisible(false);
+				setContentVisible(false);
+				cursor.elements.content.textContent = cursor.state.content = '';
+				// setTimeout(() => {
+				// }, 200); // Match CSS transition duration
 				break;
 			}
 		}
@@ -181,8 +216,7 @@ export function createCustomCursor() {
 	document.body.addEventListener(
 		'mousemove',
 		function handleMouseMove(event) {
-			x.set(event.x);
-			y.set(event.y);
+			updatePosition(event.x, event.y);
 
 			if (!(event.target instanceof HTMLElement)) {
 				// Bails out early
@@ -201,7 +235,7 @@ export function createCustomCursor() {
 	document.body.addEventListener(
 		'mouseenter',
 		function handleMouseIn() {
-			animate(opacity, 1, { duration: 0.2 });
+			setVisible(true);
 			cursor.elements.content.textContent = cursor.state.content = '';
 		},
 		eventListenerDefaultOptions
@@ -210,16 +244,16 @@ export function createCustomCursor() {
 	document.body.addEventListener(
 		'mouseleave',
 		function handleMouseLeave() {
-			animate(opacity, 0, { duration: 0.2 });
+			setVisible(false);
 			cursor.elements.content.textContent = cursor.state.content = '';
 		},
 		eventListenerDefaultOptions
 	);
 
 	return function destroy() {
-		unsubscribers.forEach((unsubscribe) => {
-			unsubscribe();
-		});
+		if (inactivityTimer !== null) {
+			clearTimeout(inactivityTimer);
+		}
 		controller.abort();
 	};
 }

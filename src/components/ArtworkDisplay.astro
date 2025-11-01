@@ -3,6 +3,7 @@ import { type Artwork } from '@/constants/artworks';
 import ArtworkDisplayHeader from './ArtworkDisplayHeader.astro';
 import ArtworkInfoPanel from './ArtworkInfoPanel.astro';
 import ArtworkDisplayFactory from './ArtworkDisplayFactory.astro';
+import Cursor from './interactive/cursor/Cursor.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -28,6 +29,7 @@ const { artwork, artworkContent, className } = Astro.props;
 				>
 					<div id="artwork-display">
 						<ArtworkDisplayFactory artwork={artwork} />
+						{artwork.metadata?.type !== 'interactive' && <Cursor />}
 					</div>
 				</div>
 			</div>

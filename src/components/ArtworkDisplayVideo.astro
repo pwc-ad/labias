@@ -39,7 +39,7 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 	<button
 		id="play-pause-button"
 		class="absolute inset-0 block size-full"
-		data-cursor-interactive="Play video"
+		data-cursor-interactive="Play"
 	>
 		<span class="sr-only">Play/Pause</span>
 	</button>
@@ -61,11 +61,15 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 			}
 			const text = video.paused ? 'Play' : 'Pause';
 			span.textContent = text;
-			button.setAttribute(
-				CURSOR_DATA_ATTRIBUTES.cursorInteractive,
-				`${text} Video`
-			);
+			button.dataset[CURSOR_DATA_ATTRIBUTES.cursorInteractive] = text;
+			// button.setAttribute(
+			// 	CURSOR_DATA_ATTRIBUTES.cursorInteractive,
+			// 	`${text}`
+			// );
 		}
+
+		video.addEventListener('play', updateButton);
+		video.addEventListener('pause', updateButton);
 
 		button.addEventListener('click', () => {
 			if (video.paused) {

@@ -3,11 +3,17 @@ import { CURSOR_LAYERS } from '@/constants/cursor';
 ---
 
 <div
-	class="bg-accent pointer-events-none fixed -inset-12 z-50 flex size-28 items-center justify-center rounded-full p-2 opacity-0 will-change-transform"
+	class="cursor-pointer bg-accent pointer-events-none fixed z-50 flex size-0 items-center justify-center rounded-full overflow-clip
+	 [.visible]:translate-x-3 [.visible]:translate-y-3
+	
+	[.visible.interactive]:size-24 [.visible.interactive]:-translate-x-1/2 [.visible.interactive]:-translate-y-1/2
+	[.interactive]:bg-white [.interactive]:cursor-none
+	[.inactive]:opacity-0 [.inactive]:duration-500
+	transition-[width,height,opacity,transform,translate,filter] transform-gpu duration-300"
 	id={CURSOR_LAYERS.pointer}
 >
 	<p
-		class="text-center font-bold text-neutral-950"
+		class="cursor-content text-center font-bold tracking-widest text-neutral-950 uppercase whitespace-nowrap"
 		id={CURSOR_LAYERS.content}
 	>
 	</p>
