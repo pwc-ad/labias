@@ -38,10 +38,10 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 	}
 	<button
 		id="play-pause-button"
-		class="absolute inset-0 block size-full"
+		class="absolute inset-0 size-full flex justify-center items-center bg-black/50 [@media(pointer:fine)]:bg-transparent [.playing]:opacity-0 duration-0 [.playing]:duration-400 transition-opacity"
 		data-cursor-interactive="Play"
 	>
-		<span class="sr-only">Play/Pause</span>
+		<span class="flex justify-center items-center rounded-full size-24 bg-white font-bold tracking-widest text-neutral-950 uppercase whitespace-nowrap [@media(pointer:fine)]:sr-only">Play/Pause</span>
 	</button>
 </div>
 <script>
@@ -62,6 +62,7 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 			const text = video.paused ? 'Play' : 'Pause';
 			span.textContent = text;
 			button.dataset[CURSOR_DATA_ATTRIBUTES.cursorInteractive] = text;
+			button.classList.toggle('playing', !video.paused);
 			// button.setAttribute(
 			// 	CURSOR_DATA_ATTRIBUTES.cursorInteractive,
 			// 	`${text}`

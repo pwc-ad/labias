@@ -10,15 +10,17 @@ const { artwork } = Astro.props;
 const { title, author, slug, year } = artwork;
 ---
 
-<li class="border-lines relative flex break-inside-avoid border-b">
+<li class="border-lines relative flex break-inside-avoid border-b w-full overflow-clip">
 	<a href={`/${slug}`} class="group flex items-center gap-3 py-3">
 		<div class="flex items-center gap-2">
-			<p
-				class="group-hover:text-accent relative font-semibold transition-colors duration-200 ease-out"
-			>
-				{title}
-			</p>
-			<p class="text-sm text-gray-500">({author}, {year})</p>
+			<div class="flex items-center gap-x-2 flex-wrap">
+				<p
+					class="group-hover:text-accent relative font-semibold transition-colors duration-200 ease-out whitespace-nowrap"
+				>
+					{title}
+				</p>
+				<p class="text-sm text-gray-500 whitespace-nowrap truncate">({author}, {year})</p>
+			</div>
 			<div class="text-accent hidden group-[.visited]:block">
 				<OcticonCheckCircleFill16 />
 			</div>

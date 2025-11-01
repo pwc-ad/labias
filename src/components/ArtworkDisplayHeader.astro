@@ -14,11 +14,11 @@ const { artwork, fullscreenTargetId } = Astro.props;
 const { title, author, year } = artwork;
 ---
 
-<header class="flex items-center justify-between gap-3 py-3 sm:px-6">
+<header class="flex items-center justify-between gap-3 py-3 px-6">
 	<div
 		class="flex flex-col justify-start md:flex-row md:items-center md:gap-3"
 	>
-		<h1 class="text-lg font-bold tracking-tight sm:text-xl">{title}</h1>
+		<h1 class="text-lg font-bold tracking-tight sm:text-xl leading-tight">{title}</h1>
 		<p class="text-sm sm:text-lg">({author}, {year})</p>
 	</div>
 	<div class="flex gap-1 sm:gap-3">
