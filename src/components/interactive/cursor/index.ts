@@ -204,8 +204,6 @@ export function createCustomCursor() {
 					)
 				).find((element) => element.matches(':hover')) ?? null;
 
-			console.log(cursor);
-
 			if (cursor.state.mode !== 'default') {
 				handleCursorInteraction(interactionTarget);
 			}

@@ -61,7 +61,7 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 			}
 			const isPlaying = !video.paused || !video.readyState;
 			const text = !isPlaying ? 'Play' : 'Pause';
-			console.log('Setting cursor interactive to:', video, video.paused, video.readyState, text);
+			
 			span.textContent = text;
 			button.dataset[CURSOR_DATA_ATTRIBUTES.cursorInteractive] = text;
 			button.classList.toggle('playing', isPlaying);
