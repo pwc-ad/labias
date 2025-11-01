@@ -1,7 +1,5 @@
 ---
 import { type Artwork } from '@/constants/artworks';
-import ArtworkDisplayHeader from './ArtworkDisplayHeader.astro';
-import ArtworkDisplayVideo from './ArtworkDisplayVideo.astro';
 
 interface Props {
 	artwork: Artwork;
@@ -9,7 +7,6 @@ interface Props {
 }
 
 const { artwork, artworkContent } = Astro.props;
-const { slug } = artwork;
 
 let Content;
 if (artworkContent) {
@@ -22,7 +19,7 @@ if (artworkContent) {
 	<div class="h-full overflow-auto py-8 pr-8 pl-12">
 		{
 			Content && (
-				<div class="prose prose-sm prose-h2:text-base prose-h3:text-sm prose-p:text-sm prose-a:text-accent hover:prose-a:underline prose-strong:font-semibold max-w-none">
+				<div class="prose prose-sm prose-h2:text-base prose-h3:text-sm prose-hr:my-6 prose-p:text-sm prose-p:mb-4 prose-ul:mb-4 prose-a:text-accent hover:prose-a:underline prose-strong:font-semibold prose-ul:list-none prose-ul:p-0 prose-li:p-0 prose-li:m-0 [&_li>p]:m-0 max-w-none">
 					<Content />
 				</div>
 			)

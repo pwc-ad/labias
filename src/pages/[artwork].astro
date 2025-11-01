@@ -29,7 +29,9 @@ const getContent = async (
 	}
 };
 
-const artworkContent = (await getContent('es')) || (await getContent('en'));
+const artworkContentEn = await getContent('en')
+const artworkContentEs = await getContent('es')
+const artworkContent = artworkContentEn || artworkContentEs;
 
 const metadata = artworkContent?.data;
 const description = metadata?.description || '';

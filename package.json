@@ -14,6 +14,7 @@
 		"@mux/mux-video": "^0.27.1",
 		"@tailwindcss/vite": "^4.1.14",
 		"astro": "^5.14.1",
+		"rehype-external-links": "^3.0.0",
 		"tailwindcss": "^4.1.14"
 	},
 	"devDependencies": {

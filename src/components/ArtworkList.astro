@@ -7,8 +7,9 @@ interface Props {
 }
 
 const { artworks } = Astro.props;
+const sortedArtworks = artworks.sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <ul class="md:columns-2 md:gap-15 xl:columns-3 xl:gap-20">
-	{artworks.map((artwork) => <ArtworkListItem artwork={artwork} />)}
+	{sortedArtworks.map((artwork) => <ArtworkListItem artwork={artwork} />)}
 </ul>

@@ -59,10 +59,12 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 			if (!span) {
 				return;
 			}
-			const text = video.paused ? 'Play' : 'Pause';
+			const isPlaying = !video.paused || !video.readyState;
+			const text = !isPlaying ? 'Play' : 'Pause';
+			console.log('Setting cursor interactive to:', video, video.paused, video.readyState, text);
 			span.textContent = text;
 			button.dataset[CURSOR_DATA_ATTRIBUTES.cursorInteractive] = text;
-			button.classList.toggle('playing', !video.paused);
+			button.classList.toggle('playing', isPlaying);
 			// button.setAttribute(
 			// 	CURSOR_DATA_ATTRIBUTES.cursorInteractive,
 			// 	`${text}`
@@ -71,6 +73,7 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 
 		video.addEventListener('play', updateButton);
 		video.addEventListener('pause', updateButton);
+		video.addEventListener('loadedmetadata', updateButton);
 
 		button.addEventListener('click', () => {
 			if (video.paused) {
@@ -80,7 +83,5 @@ const { videoUrl, muxPlaybackId, posterUrl } = metadata;
 			}
 			updateButton();
 		});
-
-		updateButton();
 	})();
 </script>
