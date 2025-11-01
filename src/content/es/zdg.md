@@ -2,7 +2,7 @@
 title: 'ZDG'
 author: 'C53'
 description: ''
-image: ''
+image: 'og/zdg.jpg'
 ---
 
 **_ZDG_** presenta definifiones y contextos tomados del léxico militar que son explicados o puestos en contexto a través modelos de lenguaje.

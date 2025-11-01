@@ -5,7 +5,10 @@ import { artworks } from '@/constants/artworks';
 const artworkSlugs = artworks.map((art) => art.slug);
 ---
 
-<Layout>
+<Layout 
+	author="Ignacio Guerra"
+	image="/poster.jpg"
+>
 	<script define:vars={{ artworkSlugs }}>
 		window._artworkSlugs = artworkSlugs;
 	</script>

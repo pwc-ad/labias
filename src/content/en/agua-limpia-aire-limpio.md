@@ -2,7 +2,7 @@
 title: 'Agua limpia, aire limpio'
 author: 'TAMAAINA'
 description: ''
-image: ''
+image: 'og/agua-limpia-aire-limpio.jpg'
 ---
 
 **_Agua limpia, aire limpio_** is a generative artwork exploring the simulation of a digital ecosystem inspired by the behaviours of natural habitats. An algorithmic homage to biodiversity that reflects the need to embrace our natural world as essential to humanity’s survival. The work stands as a meditation on coexistence, adaptation, and the quiet intelligence of a living pond.

@@ -37,19 +37,6 @@ export interface Artwork {
 export type Artworks = Artwork[];
 
 export const artworks: Artworks = [
-	// {
-	// 	slug: 'titulo-obra',
-	// 	title: 'Título Obra',
-	// 	author: 'Nombre Artista',
-	// 	year: 2025,
-	// 	metadata: {
-	// 		type: 'video',
-	// 		videoUrl:
-	// 			'https://stream.mux.com/00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo.m3u8',
-	// 		muxPlaybackId: '00o5gSGUHaGGt1kB6babUC0101yFQWmR3UtbLElVsHSLzo',
-	// 		posterUrl: '/video/poster.jpg',
-	// 	},
-	// },
 	{
 		slug: 'sedimental',
 		title: 'Sedimental',
@@ -213,6 +200,32 @@ export const artworks: Artworks = [
 					alt: '',
 				},
 			],
+		},
+	},
+	{
+		slug: 'dance-step-criptodancer',
+		title: 'Dance Step // Criptodancer',
+		author: 'Sol Vazquez',
+		year: 2023,
+		metadata: {
+			type: 'video',
+			videoUrl:
+				'https://stream.mux.com/00ay020100JSkdxltegS9rYq01CHWmibMDo5DMff5Eavbzus.m3u8',
+			muxPlaybackId: '00ay020100JSkdxltegS9rYq01CHWmibMDo5DMff5Eavbzus',
+			posterUrl: '/dance-step-criptodancer.jpg',
+		},
+	},
+	{
+		slug: 'cucaracha-cucharita',
+		title: 'Cucaracha Cucharita',
+		author: 'Miopía y Astigmatismo',
+		year: 2024,
+		metadata: {
+			type: 'video',
+			videoUrl:
+				'https://stream.mux.com/fRcM02mUnQiy7uoVV3YDXC8Xzusf52L00YWOpeJk0102YzY.m3u8',
+			muxPlaybackId: 'fRcM02mUnQiy7uoVV3YDXC8Xzusf52L00YWOpeJk0102YzY',
+			posterUrl: '/cucaracha-cucharita.jpg',
 		},
 	},
 ];

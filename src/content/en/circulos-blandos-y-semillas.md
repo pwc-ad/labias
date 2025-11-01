@@ -2,7 +2,7 @@
 title: 'Círculos Blandos y Semillas'
 author: 'Federico Abrile'
 description: ''
-image: 'og/circulos-blandos-y-semillas.png'
+image: 'og/circulos-blandos-y-semillas.jpg'
 ---
 
 **_Circulos Blandos y Semillas_** is a generative art series that begins with a visual exercise: drawings annotated in a notebook. At the core of this series lies a mathematics that comes to life in figures impossible to fully predict.
