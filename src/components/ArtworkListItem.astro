@@ -13,9 +13,9 @@ const { title, author, slug, year } = artwork;
 <li class="border-lines relative flex break-inside-avoid border-b w-full overflow-clip">
 	<a href={`/${slug}`} class="group flex items-center gap-3 py-3">
 		<div class="flex items-center gap-2">
-			<div class="flex items-center gap-x-2 flex-wrap">
+			<div class="flex items-center gap-x-2 flex-wrap w-full">
 				<p
-					class="group-hover:text-accent relative font-semibold transition-colors duration-200 ease-out whitespace-nowrap"
+					class="group-hover:text-accent relative font-semibold transition-colors duration-200 ease-out line-clamp-none"
 				>
 					{title}
 				</p>

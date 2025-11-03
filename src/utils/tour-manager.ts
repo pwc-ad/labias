@@ -51,22 +51,23 @@ class TourManager {
 	}
 }
 
-const dropTourIfOutdated = (artworkSlugs: string[]) => {
-	const artworkListHash = artworkSlugs.join('|');
-	const storedHash = localStorage.getItem('tour-hash');
-	if (storedHash !== artworkListHash) {
-		localStorage.removeItem('tour');
-		localStorage.setItem('tour-hash', artworkListHash);
-	}
-};
-
 export const getTour = (artworkSlugs: string[]) => {
-	dropTourIfOutdated(artworkSlugs);
-
 	const storedTour = localStorage.getItem('tour');
-	const tourManager = storedTour
-		? new TourManager(JSON.parse(storedTour))
-		: new TourManager(createTour(artworkSlugs));
+	
+	let tour: Tour = [];
+	if(!!storedTour) {
+		const parsedTour: Tour = JSON.parse(storedTour);
+		const newArtworksTour = createTour(
+			artworkSlugs.filter(
+				(slug) => !parsedTour.find((item) => item.slug === slug)
+			)
+		);
+		tour = [...parsedTour, ...newArtworksTour];
+	} else {
+		tour = createTour(artworkSlugs);
+	}
+
+	const tourManager = new TourManager(tour);
 	return tourManager;
 };
 

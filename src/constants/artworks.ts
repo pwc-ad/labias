@@ -228,6 +228,26 @@ export const artworks: Artworks = [
 			posterUrl: '/cucaracha-cucharita.jpg',
 		},
 	},
+	{
+		slug: 'particle-flow',
+		title: 'ParticleFlow.tsx',
+		author: 'RadicalSoftware',
+		year: 2025,
+		metadata: {
+			type: 'interactive',
+			url: 'https://radicalsoftware.xyz/experiments/particle-flow/',
+		},
+	},
+	{
+		slug: 'distintas-miradas-various-stares-different-stares',
+		title: 'Distintas miradas / Various stares / Different stares',
+		author: 'Roy Eden',
+		year: 2025,
+		metadata: {
+			type: 'interactive',
+			url: 'https://stares.netlify.app/',
+		},
+	},
 ];
 
 export type ArtworkSlug = (typeof artworks)[number]['slug'];
