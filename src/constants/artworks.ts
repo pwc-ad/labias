@@ -238,16 +238,16 @@ export const artworks: Artworks = [
 			url: 'https://radicalsoftware.xyz/experiments/particle-flow/',
 		},
 	},
-	{
-		slug: 'distintas-miradas-various-stares-different-stares',
-		title: 'Distintas miradas / Various stares / Different stares',
-		author: 'Roy Eden',
-		year: 2025,
-		metadata: {
-			type: 'interactive',
-			url: 'https://stares.netlify.app/',
-		},
-	},
+	// {
+	// 	slug: 'distintas-miradas-various-stares-different-stares',
+	// 	title: 'Distintas miradas / Various stares / Different stares',
+	// 	author: 'Roy Eden',
+	// 	year: 2025,
+	// 	metadata: {
+	// 		type: 'interactive',
+	// 		url: 'https://stares.netlify.app/',
+	// 	},
+	// },
 	{
 		slug: 'sin-titulo',
 		title: 'Sin título',
