@@ -248,6 +248,19 @@ export const artworks: Artworks = [
 			url: 'https://stares.netlify.app/',
 		},
 	},
+	{
+		slug: 'sin-titulo',
+		title: 'Sin título',
+		author: 'Mauro Santopietro',
+		year: 2025,
+		metadata: {
+			type: 'video',
+			videoUrl:
+				'https://stream.mux.com/hoZvQXco01iBcmN02uP7ac0000BlUdHGhB00lNpH6zTwxNF4.m3u8',
+			muxPlaybackId: 'hoZvQXco01iBcmN02uP7ac0000BlUdHGhB00lNpH6zTwxNF4',
+			posterUrl: '/sin-titulo.jpg',
+		},
+	},
 ];
 
 export type ArtworkSlug = (typeof artworks)[number]['slug'];
