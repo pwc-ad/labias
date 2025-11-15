@@ -57,7 +57,7 @@ export const artworks: Artworks = [
 		year: 2025,
 		metadata: {
 			type: 'interactive',
-			url: 'https://editor.p5js.org/tamourac/full/LNPWtPFZ3',
+			url: 'https://agualimpia-airelimpio.netlify.app/',
 		},
 	},
 	{
